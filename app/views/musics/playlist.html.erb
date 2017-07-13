@@ -1,0 +1,1063 @@
+<div class="container-fluid playlist-body">
+    <div class="row">
+        <div class="col-sm-9 full">
+            <div class="playlist-bundle">    
+                <div class="playlist-image" id="playlist-img">
+                    
+                    <div class="playlist-nav container">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="playlist-logo">
+                                    <a href="/musics/playlist" onClick="soundoff('audio_off')"><div>Maestro</div>
+                                </div>
+                            </div>
+                    <div class="col-sm-2 account">
+                        <a href="../users/edit" id="allstopButton">account</a>
+                        <a href="../users/sign_out" onClick="soundoff('audio_off')">logout</a>
+                    </div>
+                    
+                        </div>
+                    </div>
+                    <div class="sound_button">
+                            <img id="soundimg" src="/audio_on_icon.png" class="playlist-play-icon" onClick="PlaySound('audio__playlist__3')">
+                    </div>
+                    <div class="playlist-small-bundle">
+                    
+                        <!-- Trigger the modal with a button -->
+                        <button id = "Modal" type="button" data-toggle="modal" data-target="#myModal8">Edit sound</button>
+                        
+                        <div id="writer_name">sound by writer</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 sub">
+            <div class="row">
+
+                <div id="menu">
+                    <div class="name">my playlist</div>
+                    <div class="panel number1">
+                        <div class="bird">
+                      <img class="name1 picture first" onClick="modal5Go()" src="/nightcafe.png" alt="">
+                        <span class="transition overlay">
+                            <h3># night cafe</h3>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="panel number2">
+                        <div class="bird">
+                      <img class="name2 picture" onClick="modal6Go()" src="/seashore.png" alt="">
+                            <span class="transition overlay">
+                            <h3># seashore</h3>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="panel number3">
+                        <div class="bird">
+                      <img class="name3 picture" onClick="modal7Go()" src="/rainystreet.png" alt="">
+                        <span class="transition overlay">
+                            <h3># rainy street</h3>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="panel number4">
+                        <div class="bird">
+                      <img class="name4 picture" onClick="modal8Go()" src="/camping.png" alt="">
+                        <span class="transition overlay">
+                            <h3># camping</h3>
+                        </span>
+                        </div>
+                    </div>
+                    <% @playlists.each_with_index do |playlist,k| %>
+                 
+                        <% if k==0 %>
+                            <div class="panel number5">
+                                <div class="bird">
+                                    <% if playlist.image.present? %>
+                                        <%= image_tag("#{playlist.image}", :style  =>"width: 100%; ", :class=>"picture name5", :onClick=>"modalGo()" ) %>
+                                    <% else %>
+                                        <img src="/default_imgs2/<%=playlist.image2%>" style="width: 100%;" class="picture name5" onClick="modalGo()">
+                                    <% end %>
+                                    <span class="transition overlay">
+                                        <h3># <%=playlist.name%></h3>
+                                    </span>
+                                </div>
+                            </div>    
+                        <% elsif k==1%>
+                            <div class="panel number6">
+                                <div class="bird">
+                                     <% if playlist.image.present? %>
+                                        <%= image_tag("#{playlist.image}", :style  =>"width: 100%;", :class=>"picture name6", :onClick=>"modal2Go()" ) %>
+                                    <% else %>
+                                        <img src="/default_imgs2/<%=playlist.image2%>" style="width: 100%; " class="picture name6" onClick="modal2Go()">
+                                    <% end %>
+                                    <span class="transition overlay">
+                                        <h3># <%=playlist.name%></h3>
+                                    </span>
+                                </div>
+                            </div>                      
+                        <% elsif k==2%>
+                            <div class="panel number7">
+                                <div class="bird">
+                                    <% if playlist.image.present? %>
+                                    <%= image_tag("#{playlist.image}", :style  =>"width: 100%;", :class=>"picture name7", :onClick=>"modal3Go()" ) %>
+                                    <% else %>
+                                        <img src="/default_imgs2/<%=playlist.image2%>" style="width: 100%; " class="picture name7" onClick="modal3Go()">
+                                    <% end %>
+                                    <span class="transition overlay">
+                                        <h3># <%=playlist.name%></h3>
+                                    </span>
+                                </div>
+                            </div>     
+                        <% else %>
+                            <div class="panel number8">
+                                <div class="bird">
+                                    <% if playlist.image.present?  %>
+                                        <%= image_tag("#{playlist.image}", :style  =>"width: 100%;", :class=>"picture name8", :onClick=>"modal4Go()" ) %>
+                                    <% else %>
+                                        <img src="/default_imgs2/<%=playlist.image2%>" style="width: 100%; " class="picture name8" onClick="modal4Go()">
+                                    <% end %>
+                                    <span class="transition overlay">
+                                        <h3># <%=playlist.name%></h3>
+                                    </span>
+                                </div>
+                            </div>                             
+                        <%end%>
+ 
+                    <%end%>
+                </div>
+            </div>
+            <div class="row navigator">
+                <div class="col-sm-6 links">
+                    <a href="/musics/music" class=" custom-link" onClick="soundoff('audio_off')"><img src="/playlist.png" class="custom-link"></a>
+                    <p class="caption">make playlist</p>
+                </div>
+                <div class="col-sm-6 links">
+                    <a href="/posts" class="post-link" onClick="soundoff('audio_off')"><img src="/theme.png" class="post-link"></a>
+                    <p class="caption">download theme</p>
+                </div>
+            </div>
+        </div>
+</div>
+
+</div>
+
+
+
+<!-- Modal1 -->
+
+<div class="modal fade" id="myModal" role="dialog"> 
+    <div class="modal-dialog">
+                    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+             
+                    <% @volume = Array.new(4){Array.new} %>
+                    <% @image_array = Array.new(4) %>
+                    <% @writer = Array.new(4) %>
+                    <% @playlists.each_with_index do |playlist,k| %>
+                            
+                        <% @musics = Music.where(:playlist_id => playlist.id) %>
+                        <% @musicss = @musics.where(:onoff => true) %>
+                        <% @musicss.each_with_index do |u,i| %>
+                            <% if k == 0 %>
+                                <div class="modal-item">
+                                    <span><%= u.name%></span>
+                                    <div class="player__playlist">
+                                        <% @volume[k][i] = u.volume %>
+                                        <% @writer[k] = playlist.writer %>
+                                       
+                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist_<%=k%> audio_off" src="/<%=u.name %>.mp3" loop >
+                                        </audio>
+                                        <div id="volume_<%=k%>_<%=i%>" class="volume3"></div>
+                                        <br>
+                                    </div>
+                                </div>
+                            <% end %>
+                            <% @image_array[k] = playlist.image %>
+                        <% end %>
+                  
+                    <% if k == 0 %>
+                        <div class="modal-footer">
+                            <form action="/posts/new">
+                                <input type="hidden" name="playlist_id" value="<%=playlist.id%>"></input>
+                                <button type ="submit" value="submit">share my playlist</button>
+                             </form>
+                        </div>   
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal2 -->
+<div class="modal fade" id="myModal2" role="dialog"> 
+    <div class="modal-dialog">
+                    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <% @image_array = Array.new(4) %>
+                <% @playlists.each_with_index do |playlist,k| %>
+              
+                        <% @musics = Music.where(:playlist_id => playlist.id) %>
+                        <% @musicss = @musics.where(:onoff => true) %>
+                        <% @musicss.each_with_index do |u,i| %>
+                            <% if k == 1 %>
+                                <div class="modal-item">                            
+                                    <span><%= u.name%></span>
+                                    <div class="player__playlist">
+                                        <% @volume[k][i] = u.volume %>
+                                        <% @writer[k] = playlist.writer %>
+                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist_<%=k%> audio_off" src="/<%=u.name %>.mp3" loop>
+                                        </audio>
+                                        <div id="volume_<%=k%>_<%=i%>" class="volume3"></div>
+                                        <br>
+                                    </div>
+                                </div>
+                            <% end %>
+                            <% @image_array[k] = playlist.image %>
+                        <% end %>
+                   
+                    <% if k == 1 %>
+                        <div class="modal-footer">
+                            <form action="/posts/new">
+                                <input type="hidden" name="playlist_id" value="<%=playlist.id%>"></input>
+                                <button type ="submit" value="submit">share my playlist</button>
+                             </form>
+                        </div> 
+                    <% end %>        
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal3 -->
+<div class="modal fade" id="myModal3" role="dialog"> 
+    <div class="modal-dialog">
+                    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+   
+                    <% @image_array = Array.new(4) %>
+                    <% @playlists.each_with_index do |playlist,k| %>
+                        <% @musics = Music.where(:playlist_id => playlist.id) %>
+                        <% @musicss = @musics.where(:onoff => true) %>
+                        <% @musicss.each_with_index do |u,i| %>
+                            <% if k == 2 %>
+                                <div class="modal-item">                        
+                                    <span><%= u.name%></span>
+                                    <div class="player__playlist">
+                                        <% @volume[k][i] = u.volume %>
+                                        <% @writer[k] = playlist.writer %>
+                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist_<%=k%> audio_off" src="/<%=u.name %>.mp3" loop>
+                                        </audio>
+                                        <div id="volume_<%=k%>_<%=i%>" class="volume3"></div>
+                                        <br>
+                                    </div>
+                                </div>
+                            <% end %>
+                            <% @image_array[k] = playlist.image %>
+                        <% end %>
+       
+                <% if k == 2 %>
+                    <div class="modal-footer">
+                        <form action="/posts/new">
+                            <input type="hidden" name="playlist_id" value="<%=playlist.id%>"></input>
+                            <button type ="submit" value="submit">share my playlist</button>
+                         </form>
+                    </div>
+                    <%end%>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal4 -->
+<div class="modal fade" id="myModal4" role="dialog"> 
+    <div class="modal-dialog">
+                    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+          
+            <% @image_array = Array.new(4) %>
+                <% @playlists.each_with_index do |playlist,k| %>
+                    <% @musics = Music.where(:playlist_id => playlist.id) %>
+                    <% @musicss = @musics.where(:onoff => true) %>
+                    <% @musicss.each_with_index do |u,i| %>
+                        <% if k == 3 %>
+                            <div class="modal-item">                        
+                                <span><%= u.name%></span>
+                                <div class="player__playlist">
+                                    <% @volume[k][i] = u.volume %>
+                                    <% @writer[k] = playlist.writer %>
+                                    <audio id="audio<%=k%><%=i%>"class="audio__playlist_<%=k%> audio_off" src="/<%=u.name %>.mp3" loop>
+                                    </audio>
+                                    <div id="volume_<%=k%>_<%=i%>" class="volume3"></div>
+                                    <br>
+                                </div>
+                            </div>
+                        <% end %>
+                        <% @image_array[k] = playlist.image %>
+                    <% end %>
+            
+                    <% if k ==3 %> 
+                        <div class="modal-footer">
+                            <form action="/posts/new">
+                                <input type="hidden" name="playlist_id" value="<%=playlist.id%>"></input>
+                                <button type ="submit" value="submit">share my playlist</button>
+                             </form>
+                        </div>
+                    <%end%>    
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% @default_audio_array = [["raindrop.mp3", "child.mp3", "crowd.mp3", "doorbell.mp3","glassbar.mp3","jazz.mp3"],
+["ocean.mp3", "gulls.mp3", "shorewave.mp3"],["shower.mp3"],
+["campfire.mp3", "cricket.mp3", "exoticbird.mp3", "frog.mp3","newage.mp3"]] %>
+<% @default_volume_array = [[0.2,0.1,0.25,0.15,0.15,0.7],[0.5,0.25,0.3],[0.5],[0.1,0.3,0.2,0.1,0.2]] %>
+<% @default_name_array = [["raindrop", "child", "crowd", "doorbell","glassbar","jazz"],
+["ocean", "gulls", "shorewave"],["shower"],
+["campfire", "cricket", "exoticbird", "frog","newage"]] %>
+
+<!-- Modal5 -->
+<div class="modal fade" id="myModal5" role="dialog"> 
+    <div class="modal-dialog">
+                    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+         
+                    <% @default_audio_array.each_with_index do |default_aduio_all,k| %>
+                        <% default_aduio_all.each_with_index do |default_audio,i| %>
+                            <% if k == 0 %>
+                                <div class="modal-item">                        
+                                    <span><%=@default_name_array[0][i]%></span>
+                                    <div class="player__playlist">
+                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist__<%=k%> audio_off" src="/<%= default_audio %>" loop >
+                                        </audio>
+                                        <div id="volume_<%=k%>__<%=i%>" class="volume3"></div>
+                                        <br>
+                                    </div>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal6 -->
+<div class="modal fade" id="myModal6" role="dialog"> 
+    <div class="modal-dialog">
+                    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+     
+                    <% @default_audio_array.each_with_index do |default_aduio_all,k| %>
+                        <% default_aduio_all.each_with_index do |default_audio,i| %>
+                            <% if k == 1 %>
+                                <div class="modal-item">
+                                    <span><%=@default_name_array[1][i]%></span>                           
+                                    <div class="player__playlist">
+                                    <audio id="audio<%=k%><%=i%>"class="audio__playlist__<%=k%> audio_off" src="/<%= default_audio %>" loop >
+                                    </audio>
+                                    <div id="volume_<%=k%>__<%=i%>" class="volume3"></div>
+                                    <br>
+                                    </div>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+            
+            </div>        
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal7 -->
+<div class="modal fade" id="myModal7" role="dialog"> 
+    <div class="modal-dialog">
+                    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+             
+                    <% @default_audio_array.each_with_index do |default_aduio_all,k| %>
+                        <% default_aduio_all.each_with_index do |default_audio,i| %>
+                            <% if k == 2 %>
+                            <div class="modal-item">
+                                <span><%=@default_name_array[2][i]%></span>
+                                <div class="player__playlist">
+                                    <audio id="audio<%=k%><%=i%>"class="audio__playlist__<%=k%> audio_off" src="/<%= default_audio %>" loop >
+                                    </audio>
+                                    <div id="volume_<%=k%>__<%=i%>" class="volume3"></div>
+                                    <br>
+                                </div>
+                            </div>        
+                            <% end %>
+                        <% end %>
+                    <% end %>
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal8 -->
+<div class="modal fade" id="myModal8" role="dialog"> 
+    <div class="modal-dialog">
+                    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+           
+                    <% @default_audio_array.each_with_index do |default_aduio_all,k| %>
+                        <% default_aduio_all.each_with_index do |default_audio,i| %>
+                            <% if k == 3 %>
+                                <div class="modal-item">     
+                                    <span><%=@default_name_array[3][i]%></span>
+                                    <div class="player__playlist">
+                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist__<%=k%> audio_off" src="/<%= default_audio %>" autoplay loop >
+                                        </audio>
+                                        <div id="volume_<%=k%>__<%=i%>" class="volume3"></div>
+                                        <br>
+                                    </div>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+               
+            </div>        
+        </div>
+    </div>
+</div>
+<script>
+
+$(document).ready(function(){
+    //Check if the current URL contains '#' 
+    if(document.URL.indexOf("#")==-1)
+    {
+        // Set the URL to whatever it was plus "#".
+        url = document.URL+"#";
+        location = "#";
+        //Reload the page
+        location.reload(true);
+    }
+});
+
+//1
+var writers = new Array("writer","writer","writer","writer")
+<% for j in 0..3 do %>
+    <% if @writer[j] != nil %>
+        writers[<%=j%>] = "<%= @writer[j] %>"
+    <%end%>
+<%end%>
+
+
+var m = 0;
+$(function () {
+    var $aud = new Array();
+    for (i=0;i<4;i++) {
+      $aud.push($(".audio__playlist_"+i));
+    }
+    
+    $.each($aud,function(k){
+        $aud[k].each(function(i){
+            var $vol = $("#volume_" + k + "_" + i);
+            var AUDIO = $aud[k][i];
+            var volvalue = <%= @volume %>;
+            
+            AUDIO.volume = volvalue[k][i];
+        
+            $vol.slider({
+                min:0,
+                max: 100,
+                range :"min",
+                value: AUDIO.volume * 100,
+                slide: function (ev, ui) {
+                
+                    AUDIO.volume = ui.value / 100;
+                }
+            })
+        });
+    });
+});
+
+$(function () {
+    var $default_aud = new Array();
+    for (i=0;i<4;i++) {
+      $default_aud.push($(".audio__playlist__"+i));
+    }
+    
+    $.each($default_aud,function(k){
+        $default_aud[k].each(function(i){
+            var $vol = $("#volume_" + k + "__" + i);
+            var AUDIO = $default_aud[k][i];
+            var volvalue_2 =  <%= @default_volume_array %>;
+            AUDIO.volume = volvalue_2[k][i];
+            
+        
+            $vol.slider({
+                value: AUDIO.volume * 100,
+                min:0,
+                max: 100,
+                range :"min",
+                
+                slide: function (ev, ui) {
+           
+                    AUDIO.volume = ui.value / 100;
+                }
+            })
+        });
+        
+    });
+});
+function soundoff(sound) {
+
+var thesound=document.getElementsByClassName(sound);
+
+    $.each(thesound,function(i){
+        thesound[i].pause();
+    });
+}
+
+function PlaySound(soundobj) {
+
+var thissound=document.getElementsByClassName(soundobj);
+if (m == 0){
+    $.each(thissound,function(i){
+    thissound[i].pause();
+    });
+    $(".playlist-play-icon").attr('src', '/audio_off_icon.png');
+    m=1;
+}
+else
+{
+    $.each(thissound,function(i){
+    thissound[i].play();
+    });
+    $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
+      m=0;
+    }
+}
+
+function modalGo(){
+    $('#Modal').attr('data-target','#myModal');
+    $('#soundimg').attr('onClick',"PlaySound('audio__playlist_0')");
+    $('#backgroundimg').attr('src',"/camping.png");
+    // db variable
+    var audio0 = document.getElementsByClassName('audio__playlist_0');
+    var audio1 = document.getElementsByClassName('audio__playlist_1');
+    var audio2 = document.getElementsByClassName('audio__playlist_2');
+    var audio3 = document.getElementsByClassName('audio__playlist_3');
+    // default variable
+    var audio4 = document.getElementsByClassName('audio__playlist__0');
+    var audio5 = document.getElementsByClassName('audio__playlist__1');
+    var audio6 = document.getElementsByClassName('audio__playlist__2');
+    var audio7 = document.getElementsByClassName('audio__playlist__3');
+ 
+    
+    document.getElementById("writer_name").innerHTML = "sound by "+writers[0];
+    <% @playlists.each_with_index do |playlist,k| %>
+        <%if k==0 %>
+            <% if playlist.image.present? %>
+                document.getElementById("playlist-img").style.backgroundImage = "url('<%=playlist.image%>')";
+            <% else %>
+                document.getElementById("playlist-img").style.backgroundImage = "url('/default_imgs/<%=playlist.image2%>')";
+            <%end%>
+    
+        <%end%>
+    <%end%>
+    $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
+    $.each(audio0, function(i){
+     audio0[i].play();   
+    });
+    
+    $.each(audio1, function(i){
+     audio1[i].pause();   
+    });
+    
+    $.each(audio2, function(i){
+     audio2[i].pause();   
+    });
+    
+    $.each(audio3, function(i){
+     audio3[i].pause();   
+    });
+    
+    $.each(audio4, function(i){
+     audio4[i].pause();   
+    });
+    
+    $.each(audio5, function(i){
+     audio5[i].pause();   
+    });
+    
+    $.each(audio6, function(i){
+     audio6[i].pause();   
+    });
+    
+    $.each(audio7, function(i){
+     audio7[i].pause();   
+    });
+    m=0;
+}
+
+
+function modal2Go(){
+    $('#Modal').attr('data-target','#myModal2');
+    $('#soundimg').attr('onClick',"PlaySound('audio__playlist_1')");
+    $('#backgroundimg').attr('src',"/nightcafe.png");
+    // db variable
+    var audio0 = document.getElementsByClassName('audio__playlist_0');
+    var audio1 = document.getElementsByClassName('audio__playlist_1');
+    var audio2 = document.getElementsByClassName('audio__playlist_2');
+    var audio3 = document.getElementsByClassName('audio__playlist_3');
+    // default variable
+    var audio4 = document.getElementsByClassName('audio__playlist__0');
+    var audio5 = document.getElementsByClassName('audio__playlist__1');
+    var audio6 = document.getElementsByClassName('audio__playlist__2');
+    var audio7 = document.getElementsByClassName('audio__playlist__3');
+    document.getElementById("writer_name").innerHTML = "sound by " +writers[1];
+    <% @playlists.each_with_index do |playlist,k| %>
+        <%if k==1 %>
+          <% if playlist.image.present? %>
+                document.getElementById("playlist-img").style.backgroundImage = "url('<%=playlist.image%>')";
+            <% else %>
+                document.getElementById("playlist-img").style.backgroundImage = "url('/default_imgs/<%=playlist.image2%>')";
+            <%end%>
+        <%end%>
+    <%end%>
+    $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
+    $.each(audio0, function(i){
+     audio0[i].pause();
+    });
+    
+    $.each(audio1, function(i){
+     audio1[i].play();   
+    });
+    
+    $.each(audio2, function(i){
+     audio2[i].pause();   
+    });
+    
+    $.each(audio3, function(i){
+     audio3[i].pause();   
+    });
+    
+     $.each(audio4, function(i){
+     audio4[i].pause();   
+    });
+    
+    $.each(audio5, function(i){
+     audio5[i].pause();   
+    });
+    
+    $.each(audio6, function(i){
+     audio6[i].pause();   
+    });
+    
+    $.each(audio7, function(i){
+     audio7[i].pause();   
+    });
+    
+    m=0;
+}
+
+function modal3Go(){
+    $('#Modal').attr('data-target','#myModal3');
+    $('#soundimg').attr('onClick',"PlaySound('audio__playlist_2')");
+    $('#backgroundimg').attr('src',"/rainystreet.png");
+    // db variable
+    var audio0 = document.getElementsByClassName('audio__playlist_0');
+    var audio1 = document.getElementsByClassName('audio__playlist_1');
+    var audio2 = document.getElementsByClassName('audio__playlist_2');
+    var audio3 = document.getElementsByClassName('audio__playlist_3');
+    // default variable
+    var audio4 = document.getElementsByClassName('audio__playlist__0');
+    var audio5 = document.getElementsByClassName('audio__playlist__1');
+    var audio6 = document.getElementsByClassName('audio__playlist__2');
+    var audio7 = document.getElementsByClassName('audio__playlist__3');
+   document.getElementById("writer_name").innerHTML = "sound by "+writers[2];  
+     <% @playlists.each_with_index do |playlist,k| %>
+        <%if k==2 %>
+            <% if playlist.image.present? %>
+                    document.getElementById("playlist-img").style.backgroundImage = "url('<%=playlist.image%>')";
+            <% else %>
+                    document.getElementById("playlist-img").style.backgroundImage = "url('/default_imgs/<%=playlist.image2%>')";
+            <%end%>
+            
+        <%end%>
+    <%end%>
+    $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
+    $.each(audio0, function(i){
+     audio0[i].pause();   
+    });
+    
+    $.each(audio1, function(i){
+     audio1[i].pause();   
+    });
+    
+    $.each(audio2, function(i){
+     audio2[i].play();   
+    });
+    
+    $.each(audio3, function(i){
+     audio3[i].pause();   
+    });
+    
+     $.each(audio4, function(i){
+     audio4[i].pause();   
+    });
+    
+    $.each(audio5, function(i){
+     audio5[i].pause();   
+    });
+    
+    $.each(audio6, function(i){
+     audio6[i].pause();   
+    });
+    
+    $.each(audio7, function(i){
+     audio7[i].pause();   
+    });
+    
+    
+    m=0;
+}
+
+function modal4Go(){
+    $('#Modal').attr('data-target','#myModal4');
+    $('#soundimg').attr('onClick',"PlaySound('audio__playlist_3')");
+    $('#backgroundimg').attr('src',"/seashore.png");
+    // db variable
+    var audio0 = document.getElementsByClassName('audio__playlist_0');
+    var audio1 = document.getElementsByClassName('audio__playlist_1');
+    var audio2 = document.getElementsByClassName('audio__playlist_2');
+    var audio3 = document.getElementsByClassName('audio__playlist_3');
+    // default variable
+    var audio4 = document.getElementsByClassName('audio__playlist__0');
+    var audio5 = document.getElementsByClassName('audio__playlist__1');
+    var audio6 = document.getElementsByClassName('audio__playlist__2');
+    var audio7 = document.getElementsByClassName('audio__playlist__3');
+    document.getElementById("writer_name").innerHTML = "sound by "+writers[3];
+    <% @playlists.each_with_index do |playlist,k| %>
+        <%if k==3 %>
+            <% if playlist.image.present? %>
+                document.getElementById("playlist-img").style.backgroundImage = "url('<%=playlist.image%>')";
+            <% else %>
+                document.getElementById("playlist-img").style.backgroundImage = "url('/default_imgs/<%=playlist.image2%>')";
+            <%end%>
+    
+        <%end%>
+    <%end%>
+    
+    $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
+    $.each(audio0, function(i){
+     audio0[i].pause();   
+    });
+    
+    $.each(audio1, function(i){
+     audio1[i].pause();   
+    });
+    
+    $.each(audio2, function(i){
+     audio2[i].pause();   
+    });
+    
+    $.each(audio3, function(i){
+     audio3[i].play();   
+    });
+
+    $.each(audio4, function(i){
+     audio4[i].pause();   
+    });
+    
+    $.each(audio5, function(i){
+     audio5[i].pause();   
+    });
+    
+    $.each(audio6, function(i){
+     audio6[i].pause();   
+    });
+    
+    $.each(audio7, function(i){
+     audio7[i].pause();   
+    });
+    
+    m=0;
+}
+
+
+function modal5Go(){
+    $('#Modal').attr('data-target','#myModal5');
+    $('#soundimg').attr('onClick',"PlaySound('audio__playlist__0')");
+    $('#backgroundimg').attr('src',"/camping.png");
+    // db variable
+    var audio0 = document.getElementsByClassName('audio__playlist_0');
+    var audio1 = document.getElementsByClassName('audio__playlist_1');
+    var audio2 = document.getElementsByClassName('audio__playlist_2');
+    var audio3 = document.getElementsByClassName('audio__playlist_3');
+    // default variable
+    var audio4 = document.getElementsByClassName('audio__playlist__0');
+    var audio5 = document.getElementsByClassName('audio__playlist__1');
+    var audio6 = document.getElementsByClassName('audio__playlist__2');
+    var audio7 = document.getElementsByClassName('audio__playlist__3');
+    document.getElementById("writer_name").innerHTML = "sound by "+writers[3]; 
+    document.getElementById("playlist-img").style.backgroundImage = "url('/nightcafe.png')";
+    $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
+    $.each(audio0, function(i){
+     audio0[i].pause();   
+    });
+    
+    $.each(audio1, function(i){
+     audio1[i].pause();   
+    });
+    
+    $.each(audio2, function(i){
+     audio2[i].pause();   
+    });
+    
+    $.each(audio3, function(i){
+     audio3[i].pause();   
+    });
+
+    $.each(audio4, function(i){
+     audio4[i].play();   
+    });
+    
+    $.each(audio5, function(i){
+     audio5[i].pause();   
+    });
+    
+    $.each(audio6, function(i){
+     audio6[i].pause();   
+    });
+    
+    $.each(audio7, function(i){
+     audio7[i].pause();   
+    });
+    
+    m=0;
+}
+
+
+function modal6Go(){
+    $('#Modal').attr('data-target','#myModal6');
+    $('#soundimg').attr('onClick',"PlaySound('audio__playlist__1')");
+    $('#backgroundimg').attr('src',"/nightcafe.png");
+    // db variable
+    var audio0 = document.getElementsByClassName('audio__playlist_0');
+    var audio1 = document.getElementsByClassName('audio__playlist_1');
+    var audio2 = document.getElementsByClassName('audio__playlist_2');
+    var audio3 = document.getElementsByClassName('audio__playlist_3');
+    // default variable
+    var audio4 = document.getElementsByClassName('audio__playlist__0');
+    var audio5 = document.getElementsByClassName('audio__playlist__1');
+    var audio6 = document.getElementsByClassName('audio__playlist__2');
+    var audio7 = document.getElementsByClassName('audio__playlist__3');
+    document.getElementById("writer_name").innerHTML = "sound by "+writers[3];
+    document.getElementById("playlist-img").style.backgroundImage = "url('/seashore.png')";
+    $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
+    $.each(audio0, function(i){
+     audio0[i].pause();   
+    });
+    
+    $.each(audio1, function(i){
+     audio1[i].pause();   
+    });
+    
+    $.each(audio2, function(i){
+     audio2[i].pause();   
+    });
+    
+    $.each(audio3, function(i){
+     audio3[i].pause();   
+    });
+
+    $.each(audio4, function(i){
+     audio4[i].pause();   
+    });
+    
+    $.each(audio5, function(i){
+     audio5[i].play();   
+    });
+    
+    $.each(audio6, function(i){
+     audio6[i].pause();   
+    });
+    
+    $.each(audio7, function(i){
+     audio7[i].pause();   
+    });
+    
+    m=0;
+}
+
+
+function modal7Go(){
+    $('#Modal').attr('data-target','#myModal7');
+    $('#soundimg').attr('onClick',"PlaySound('audio__playlist__2')");
+     $('#backgroundimg').attr('src',"/rainystreet.png");
+    // db variable
+    var audio0 = document.getElementsByClassName('audio__playlist_0');
+    var audio1 = document.getElementsByClassName('audio__playlist_1');
+    var audio2 = document.getElementsByClassName('audio__playlist_2');
+    var audio3 = document.getElementsByClassName('audio__playlist_3');
+    // default variable
+    var audio4 = document.getElementsByClassName('audio__playlist__0');
+    var audio5 = document.getElementsByClassName('audio__playlist__1');
+    var audio6 = document.getElementsByClassName('audio__playlist__2');
+    var audio7 = document.getElementsByClassName('audio__playlist__3');
+    document.getElementById("writer_name").innerHTML = "sound by "+writers[3];
+    document.getElementById("playlist-img").style.backgroundImage = "url('/rainystreet.png')";
+    $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
+    $.each(audio0, function(i){
+     audio0[i].pause();   
+    });
+    
+    $.each(audio1, function(i){
+     audio1[i].pause();   
+    });
+    
+    $.each(audio2, function(i){
+     audio2[i].pause();   
+    });
+    
+    $.each(audio3, function(i){
+     audio3[i].pause();   
+    });
+
+    $.each(audio4, function(i){
+     audio4[i].pause();   
+    });
+    
+    $.each(audio5, function(i){
+     audio5[i].pause();   
+    });
+    
+    $.each(audio6, function(i){
+     audio6[i].play();   
+    });
+    
+    $.each(audio7, function(i){
+     audio7[i].pause();   
+    });
+    
+    m=0;
+}
+
+
+function modal8Go(){
+    $('#Modal').attr('data-target','#myModal8');
+    $('#soundimg').attr('onClick',"PlaySound('audio__playlist__3')");
+     $('#backgroundimg').attr('src',"/seashore.png");
+    // db variable
+    var audio0 = document.getElementsByClassName('audio__playlist_0');
+    var audio1 = document.getElementsByClassName('audio__playlist_1');
+    var audio2 = document.getElementsByClassName('audio__playlist_2');
+    var audio3 = document.getElementsByClassName('audio__playlist_3');
+    // default variable
+    var audio4 = document.getElementsByClassName('audio__playlist__0');
+    var audio5 = document.getElementsByClassName('audio__playlist__1');
+    var audio6 = document.getElementsByClassName('audio__playlist__2');
+    var audio7 = document.getElementsByClassName('audio__playlist__3');
+    document.getElementById("writer_name").innerHTML = "sound by "+writers[3];
+    document.getElementById("playlist-img").style.backgroundImage = "url('/camping.png')";
+    $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
+    $.each(audio0, function(i){
+     audio0[i].pause();   
+    });
+    
+    $.each(audio1, function(i){
+     audio1[i].pause();   
+    });
+    
+    $.each(audio2, function(i){
+     audio2[i].pause();   
+    });
+    
+    $.each(audio3, function(i){
+     audio3[i].pause();   
+    });
+
+    $.each(audio4, function(i){
+     audio4[i].pause();   
+    });
+    
+    $.each(audio5, function(i){
+     audio5[i].pause();   
+    });
+    
+    $.each(audio6, function(i){
+     audio6[i].pause();   
+    });
+    
+    $.each(audio7, function(i){
+     audio7[i].play();   
+    });
+    
+    m=0;
+}
+</script>
+
+<style>
+
+
+.playpause__playlist {
+    border: 1px solid grey;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-bottom: 15px;
+    padding: 12px 0;
+}
+
+.playpause__playlist:hover {
+    border-color: #ccc;
+}
+
+
+
+
+</style>

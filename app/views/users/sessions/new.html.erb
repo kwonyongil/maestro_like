@@ -1,0 +1,70 @@
+
+<div class="main_source">
+<div class="container">
+  <div class="row">
+      <div class="logo-box">
+        <h3 class="logo">Maestro</h3>
+      </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="login-box col-sm-4">
+          <h2 class="small-title">log in Maestro</h2>
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-10">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.email_field :email, autofocus: true, placeholder:" user email", class:"input-box" %>
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+        </div>    
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-10">  
+            <div class="field">
+              <%= f.password_field :password, autocomplete: "off", placeholder:" password", class:"input-box" %>
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-10">
+          <%= f.submit "log in", class:"sign-in-button" %>
+          </div>
+          <div class="col-sm-1"></div>
+        </div>
+        <div class="row forgot">
+        <%= render "users/shared/links" %>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 sign_up_article">
+          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+            <span class="ask">Don't have an account ? </span><%= link_to "sign up", new_registration_path(resource_name), class:"sign-up-button" %><br />
+          <% end -%>
+        <% end %>
+          </div>
+          <div class="col-sm-2"></div>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<video autoplay loop id="video-background" muted plays-inline>
+  <source src="/short.mp4" type="video/mp4">
+  <source src="/short.webm" type="video/webm">
+	<source src="/short.ogg" type="video/ogg">
+</video>
+<style>
+body {
+  
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+
+<audio src="/Forwards_Tom+Day.mp3" autoplay="autoplay"  display="none"></audio>

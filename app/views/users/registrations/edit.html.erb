@@ -1,0 +1,84 @@
+<div class="main_source">
+<div class="container">
+  <div class="row">
+      <div class="logo-box">
+        <h3 class="logo">Maestro</h3>
+      </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="login-box col-sm-4">
+  <h2 class="small-title">sign up Maestro</h2>
+                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                    <%= devise_error_messages! %>
+                    
+                      <div class="field">
+                      <%= f.email_field :email, autofocus: true, class:"input-box", placeholder:"email" %>
+                      </div>
+                   
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+             
+                  <div class="field">
+                  <%= f.password_field :password, autocomplete: "off", class:"input-box", placeholder:"new password"  %>
+                  </div>
+             
+                  <div class="field">
+                  <%= f.password_field :password_confirmation, autocomplete: "off", class:"input-box", placeholder:"new password_confirmation"  %>
+                  </div>
+             
+                  <div class="field">
+                  <%= f.password_field :current_password, autocomplete: "off", class:"input-box", placeholder:"current_password"  %>
+                  </div>
+                
+            <div class="actions">
+            <%= f.submit "update", class:"sign-up-page-button" %>
+            </div>
+            <div class="actions">
+            <button class="cancel_button"><a href="../musics/playlist">cancel</a></button>
+            </div>
+            <% end %>
+</div>
+      <div class="col-sm-4"></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<video autoplay loop id="video-background" muted plays-inline>
+  <source src="/short.mp4" type="video/mp4">
+  <source src="/short.webm" type="video/webm">
+	<source src="/short.ogg" type="video/ogg">
+</video>
+
+<style>
+body {
+  
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-box{
+  background-color:rgba(0,0,0,0.82);
+  width:500px;
+  height:450px;
+}
+
+</style>
+
+<script>
+  $(document).ready(function(){
+
+            //Check if the current URL contains '#' 
+            if(document.URL.indexOf("#")==-1)
+            {
+                // Set the URL to whatever it was plus "#".
+                url = document.URL+"#";
+                location = "#";
+                //Reload the page
+                location.reload(true);
+            }
+});
+</script>

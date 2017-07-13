@@ -1,0 +1,108 @@
+
+<div class="whole">
+    <div class="container main">
+        <h1 class="main_logo">Maestro</h1>
+        <div class="row">
+            <div class="col-sm-11">
+                <span class="theme">share my sound</span>
+            </div>
+            <div class="col-sm-1 back"><%= link_to 'Back', posts_path %></div>
+        </div>
+        <div class="line"></div>
+        <div class="row">
+            <div class="col-sm-6">
+                <% if @playlist.image.present? %>
+                    <%= image_tag(@playlist.image,  width: '100%', height: '100%') %> 
+                 <% else %>
+                     <img src="/default_imgs2/<%=@playlist.image2%>" style="width: 100%; height:100%">
+                <% end %>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <%= render 'form1' %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+<style>
+    .main{
+        padding-top: 50px;
+    }
+    .main_logo{
+        padding:60px;
+        color:lightgray;
+        text-align: center;
+    }
+    a{
+        float: right;
+        color: white;
+        font-size:20px;
+    }
+    .whole{
+        height:100vh;
+        background-color: #030303;
+    }
+    .thumbnail{
+        border: 1.5px solid #303030;
+        background-color: transparent;
+    }
+    .imgs{
+        
+    }
+    .theme{
+        font-size:20px;
+        color: lightgray;
+        
+    }
+    .title{
+        color:lightgray;
+        text-decoration:none;
+    }
+    .user_name{
+        color:gray;
+    }
+    .line{
+        width:100%;
+        height:2px;
+        background-color: gray;
+        margin-bottom: 20px;
+    }
+    .upload_img{
+        width:100%;
+        height:100%;
+    }
+    #post_content{
+        width:100%;
+        height:200px;
+        background-color:transparent;
+        border: 2px solid gray;
+    }
+    #post_title{
+        width:100%;
+        background-color:transparent;
+        border: 2px solid gray;
+    }
+    .actions input{
+        margin-top:100px;
+        width:100%;
+        padding:15px;
+        
+    }
+    .actions input:hover{
+        opacity:0.7;
+        transition:0.3s;
+    }
+    .field{
+        margin-bottom:60px;
+    }
+    .label{
+        font-family: "Helvetica";
+        text-align:left;
+        color: lightgray;
+        font-size: 1.2em;
+    }
+    .contents{
+        margin-bottom:100px;
+    }
+</style>

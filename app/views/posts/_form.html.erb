@@ -1,0 +1,35 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="contents">
+  <div class="label">Title</div>
+  <div class="field">
+    <%= f.text_field :title %>
+  </div>
+  <div class="label">Content</div>
+  
+  </div>
+    <div class="field">
+    <%= f.text_area :content %>
+  </div>
+  
+   <div class="field">
+    <%= f.hidden_field :playlist_image , :value => @playlist.image%>
+    
+    <div class="field" stlye ="display:none;">
+    <%= f.hidden_field :playlist_id , :value => @playlist.id%>
+      
+  </div>
+  <div class="actions">
+    <%= f.submit 'SHARE' %>
+  </div>
+<% end %>

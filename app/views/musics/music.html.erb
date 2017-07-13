@@ -1,0 +1,1147 @@
+<link href="https://fonts.googleapis.com/css?family=Kalam|Kelly+Slab" rel="stylesheet">
+<%
+my_audio_basic = [{audio_name: "bamboo", audio_volume: 0.5 ,audio_onoff: false },
+{audio_name: "campfire", audio_volume: 0.5 ,audio_onoff: false},{audio_name: "disney", audio_volume: 0.5, audio_onoff: false },
+{audio_name: "evening", audio_volume: 0.5, audio_onoff: false },{audio_name: "jungle", audio_volume: 0.5, audio_onoff: false },
+{audio_name: "lake", audio_volume: 0.5, audio_onoff: false },{audio_name: "ocean", audio_volume: 0.5 ,audio_onoff: false},
+{audio_name: "raindrop", audio_volume: 0.5, audio_onoff: false },{audio_name: "street", audio_volume: 0.5, audio_onoff: false },
+{audio_name: "thunder", audio_volume: 0.5, audio_onoff: false},{audio_name: "wavewind", audio_volume: 0.5, audio_onoff: false},
+{audio_name: "LP", audio_volume: 0.5, audio_onoff: false},{audio_name: "subway", audio_volume: 0.5, audio_onoff: false},
+{audio_name: "marching", audio_volume: 0.5, audio_onoff: false},{audio_name: "battle", audio_volume: 0.5, audio_onoff: false}]
+
+my_audio_natural = [{audio_name: "cricket", audio_volume: 0.5 ,audio_onoff: false },
+{audio_name: "Cuckoos", audio_volume: 0.5 ,audio_onoff: false},{audio_name: "exoticbird", audio_volume: 0.5, audio_onoff: false },
+{audio_name: "frog", audio_volume: 0.5, audio_onoff: false },{audio_name: "gulls", audio_volume: 0.5, audio_onoff: false },
+{audio_name: "owl", audio_volume: 0.5, audio_onoff: false },{audio_name: "shorewave", audio_volume: 0.5 ,audio_onoff: false},
+{audio_name: "shower", audio_volume: 0.5, audio_onoff: false },{audio_name: "stream", audio_volume: 0.5, audio_onoff: false },
+{audio_name: "sweetbird", audio_volume: 0.5, audio_onoff: false},{audio_name: "wind", audio_volume: 0.5, audio_onoff: false},
+{audio_name: "zombie", audio_volume: 0.5, audio_onoff: false},{audio_name: "sealion", audio_volume: 0.5, audio_onoff: false},
+{audio_name: "howling", audio_volume: 0.5, audio_onoff: false},{audio_name: "bulldog", audio_volume: 0.5, audio_onoff: false}]
+
+my_audio_artificial = [{audio_name: "child", audio_volume: 0.5 ,audio_onoff: false },
+{audio_name: "crowd", audio_volume: 0.5 ,audio_onoff: false},{audio_name: "doorbell", audio_volume: 0.5, audio_onoff: false },
+{audio_name: "drum1", audio_volume: 0.5, audio_onoff: false },{audio_name: "drum2", audio_volume: 0.5, audio_onoff: false },
+{audio_name: "drum3", audio_volume: 0.5, audio_onoff: false },{audio_name: "fan", audio_volume: 0.5 ,audio_onoff: false},
+{audio_name: "flipping", audio_volume:0.5, audio_onoff: false },{audio_name: "glassbar", audio_volume: 0.5, audio_onoff: false },
+{audio_name: "jazz", audio_volume: 0.5, audio_onoff: false},{audio_name: "newage", audio_volume: 0.5, audio_onoff: false},
+{audio_name: "piano", audio_volume: 0.5, audio_onoff: false},{audio_name: "rollercoaster", audio_volume: 0.5, audio_onoff: false},
+{audio_name: "traffic", audio_volume: 0.5, audio_onoff: false},{audio_name: "train", audio_volume: 0.5, audio_onoff: false}]
+
+
+@my_music = ["bamboo.mp3", "campfire.mp3","disney.mp3","evening.mp3", "jungle.mp3","lake.mp3", "ocean.mp3","raindrop.mp3","street.mp3", "thunder.mp3","wavewind.mp3","LP.mp3","subway.mp3","marching.mp3","battle.mp3"];
+@my_music_2 = ["cricket.mp3", "Cuckoos.mp3","exoticbird.mp3","frog.mp3", "gulls.mp3", "owl.mp3", "shorewave.mp3","shower.mp3","stream.mp3", "sweetbird.mp3","wind.mp3","zombie.mp3","sealion.mp3","howling.mp3","bulldog.mp3"];
+@my_music_3 = ["child.mp3", "crowd.mp3","doorbell.mp3","drum1.mp3", "drum2.mp3", "drum3.mp3", "fan.mp3","flipping.mp3","glassbar.mp3", "jazz.mp3","newage.mp3","piano.mp3","rollercoaster.mp3","traffic.mp3","train.mp3"];
+%>
+<div class="custom_body">
+    <div class="container">
+        <div class="row">
+            <div class="playlist-logo">
+                    <a href="/musics/playlist"><h2>Maestro</h2></a>
+            </div>
+        </div>
+        <div class="row">
+        <div class="custom_nav">
+    <div class="custom_button">
+         
+      <!-- Trigger the modal with a button -->
+        <button class="btnstyle add" id = "Modal" type="button" data-toggle="modal" data-target="#myModal">Add to Playlist</button>
+        <button class="btnstyle" ><a href="javascript:location.reload()">reset</a></button>
+    </div>
+  </div>
+  </div>
+ </div>
+  <div class="line"></div>
+  <section class="custom_music">
+    <div class="custom_volume custom_basic">
+      <h3>basic</h3>
+       <br>
+      <% my_audio_basic.each_with_index do |u,i|
+        @player_id = "player_" + u[:audio_name]
+        @volume_id = "volume_" + u[:audio_name] 
+        @span_id = "span_" + u[:audio_name] %>
+        <div class="custom_music_item">
+          <span onclick="onoffPlay(<%=i%>)" id=<%=@span_id%> class="every_span" style="text-decoration:line-through"><%= u[:audio_name] %></span>
+          <div id=<%=@player_id%> class="player" >
+      	    <div id=<%=@volume_id%> class="volume" ></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="custom_volume custom_natural">
+      <h3>natural</h3>
+       <br>
+      <% my_audio_natural.each_with_index do |u,i| 
+        @player_id = "player_" + u[:audio_name]
+        @volume_id = "volume_" + u[:audio_name] 
+        @span_id = "span_" + u[:audio_name] %>
+        <div class="custom_music_item">
+          <span onclick="onoffPlay_2(<%=i%>)" id=<%=@span_id%> class="every_span" style="text-decoration:line-through"><%= u[:audio_name] %></span>
+          <div id=<%=@player_id%> class="player" >
+      	    <div id=<%=@volume_id%> class="volume" ></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="custom_volume custom_artificial">
+      <h3>artificial</h3>
+       <br>
+      <% my_audio_artificial.each_with_index do |u,i| 
+        @player_id = "player_" + u[:audio_name]
+        @volume_id = "volume_" + u[:audio_name]
+        @span_id = "span_" + u[:audio_name] %>
+        <div class="custom_music_item">
+          <span onclick="onoffPlay_3(<%=i%>)" id=<%=@span_id%> class="every_span"  style="text-decoration:line-through"> <%= u[:audio_name] %></span>
+          <div id=<%=@player_id%> class="player" >
+      	    <div id=<%=@volume_id%> class="volume"></div>
+          </div>
+        </div>
+      <% end %>
+    </div>  
+  </section>
+</div>
+
+
+<!-- Modal1 -->
+
+<div class="modal fade container" id="myModal" role="dialog"> 
+    
+    <div class="modal-dialog modal-custom">
+                    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" id="xxx">x</button>
+                <%= form_for(@playlist, :html => {:class => 'custom_form'})  do |f| %>
+                <h4 class="modal-title"> 
+                    <%= f.text_field :name, :placeholder => "playlist name", :id=>"name_field" %> 
+                </h4>
+            </div>
+            <div class="modal-body">
+                
+                <div class="col-sm-4">
+                
+                    <% my_audio_basic.each_with_index do |u,i| 
+                        @audio_name ="audio_name"+ i.to_s 
+                        @audio_volume ="audio_volume"+ i.to_s 
+                        @audio_onoff ="audio_onoff"+ i.to_s 
+                    %>
+                        <%= f.hidden_field @audio_name,  :value=> u[:audio_name] %>
+                        <%= f.hidden_field @audio_volume,  :value=> u[:audio_volume] , :id => @audio_volume %>
+                        <%= f.hidden_field @audio_onoff,  :value=> u[:audio_onoff], :id => @audio_onoff, :class=> "eve" %>
+                    <%end%>
+                    <% my_audio_natural.each_with_index do |u,i| 
+                        @audio_name ="audio_name_2_"+ i.to_s 
+                        @audio_volume ="audio_volume_2_"+ i.to_s 
+                        @audio_onoff ="audio_onoff_2_"+ i.to_s 
+                    %>
+                        <%= f.hidden_field @audio_name,  :value=> u[:audio_name] %>
+                        <%= f.hidden_field @audio_volume,  :value=> u[:audio_volume] , :id => @audio_volume %>
+                        <%= f.hidden_field @audio_onoff,  :value=> u[:audio_onoff], :id => @audio_onoff, :class=> "eve" %>
+                    <%end%>
+                    <% my_audio_artificial.each_with_index do |u,i| 
+                        @audio_name ="audio_name_3_"+ i.to_s 
+                        @audio_volume ="audio_volume_3_"+ i.to_s 
+                        @audio_onoff ="audio_onoff_3_"+ i.to_s 
+                    %>
+                        <%= f.hidden_field @audio_name,  :value=> u[:audio_name] %>
+                        <%= f.hidden_field @audio_volume,  :value=> u[:audio_volume] , :id => @audio_volume %>
+                        <%= f.hidden_field @audio_onoff,  :value=> u[:audio_onoff], :id => @audio_onoff, :class=> "eve"  %>
+                    <%end%>
+                        <%= f.hidden_field :writer,  :value=> current_user.name %>
+                     
+                        <div class="container mmodal">
+                        <div class="row">
+                         <%= f.hidden_field :image2 , :value=> "1.png", :id => "default_img"%>
+                <!-- auto pass id value -->
+                    <% for i in 1...64 %>
+                        <div class="col-sm-3">
+                        <img src="/default_imgs2/<%=i%>.png" style="border:none;" onClick="switch_image(<%=i%>)" id="default_image<%=i%>" class="default_image_size">
+                        </div>
+                    <% end %>
+                    </div>
+                    </div>
+                <!-- make playlist key -->
+                        <div class="custom-file-upload" id="image_upload">
+                            <%= f.file_field(:image, accept: 'image/png,image/gif,image/jpeg', id: "submit-file", :onChange => "fileupload()") %>
+                        </div>   
+                        <div class="modal-footer">
+                        <%= f.submit "add playlist", :class => "custom_button_2 custom_button_add", id:"submit-btn" %>
+                    </div>
+                <%end%>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+$(document).ready(function(){
+    //Check if the current URL contains '#' 
+    if(document.URL.indexOf("#")==-1)
+    {
+        // Set the URL to whatever it was plus "#".
+        url = document.URL+"#";
+        location = "#";
+        //Reload the page
+        location.reload(true);
+    }
+});
+
+
+window.onload = function(){
+   var default_image = document.getElementById('default_img');
+   default_image.setAttribute('value', '1.png');  // value = 첫번 째 이미지 사진 이름 부여
+   document.getElementById('default_image1').style.border = "2px solid orange"; // 선택된 것 보여주는 css
+}
+
+document.getElementById('image_upload').style.pointerEvents = "none"; //사진 업로드 거절선언 
+var old = 1;              // 초기화
+
+function switch_image(i){   // i 번째 사진 클릭시 
+     // value = i 번째 이미지 사진 이름 부여
+    var news = i; // return i.png
+    
+    if ( news != old) {   // if 3.png != 1.png 
+        document.getElementById('submit-btn').style.pointerEvents = "auto";
+        document.getElementById('image_upload').style.pointerEvents = "none";
+        var default_images = document.getElementById('default_image'+i); 
+        document.getElementById('default_img').setAttribute('value', i+'.png'); 
+        default_images.style.border = "2px solid orange"; // 새로운 i.png border create
+        if(old != 99){
+            document.getElementById('default_image'+old).style.border = "none"; // 기존 1.png border remove
+        }
+        old = i;                                            // 새로운 i를 old에 넣는다.
+    }                                                     
+    else {
+        document.getElementById('default_image'+i).style.border = "none"; // 자신의 border를 해제한다.   
+        document.getElementById('default_img').setAttribute('value', ''); // value값이 nil이 된다.
+        
+        document.getElementById('image_upload').style.pointerEvents = "auto";
+        old = 99;
+        if ( old == 99 && filecheck == 0){
+            document.getElementById('submit-btn').style.pointerEvents = "none";
+        }
+    }
+}
+
+var upload = $('#submit-file').attr('value'); // return value 
+var filecheck = 0;
+
+function fileupload(){
+    filecheck = 1;
+    document.getElementById('submit-btn').style.pointerEvents = "auto";
+    var $image_arr = document.getElementsByClassName('default_image_size')
+    $.each($image_arr,function(k){
+        $image_arr[k].style.pointerEvents= "none";
+    });
+    
+    
+    if ( old == 99 && filecheck == 0){
+        document.getElementById('submit-btn').style.pointerEvents = "none";
+    }
+}
+
+var player= new Array("player_bamboo", "player_campfire","player_disney",
+"player_evening", "player_jungle", "player_lake", "player_ocean","player_raindrop",
+"player_street", "player_thunder","player_wavewind","player_LP",
+"player_subway","player_marching","player_battle");
+
+var player_2= new Array("player_cricket", "player_Cuckoos","player_exoticbird",
+"player_frog", "player_gulls", "player_owl", "player_shorewave","player_shower",
+"player_stream", "player_sweetbird","player_wind","player_zombie",
+"player_sealion","player_howling","player_bulldog");
+
+var player_3= new Array("player_child", "player_crowd","player_doorbell",
+"player_drum1", "player_drum2", "player_drum3", "player_fan","player_flipping",
+"player_glassbar", "player_jazz","player_newage","player_piano",
+"player_rollercoaster","player_traffic","player_train");
+
+var volume = new Array("volume_bamboo", "volume_campfire","volume_disney",
+"volume_evening", "volume_jungle", "volume_lake", "volume_ocean","volume_raindrop",
+"volume_street", "volume_thunder","volume_wavewind","volume_LP",
+"volume_subway","volume_marching","volume_battle");
+
+var volume_2 = new Array("volume_cricket", "volume_Cuckoos","volume_exoticbird",
+"volume_frog", "volume_gulls", "volume_owl", "volume_shorewave","volume_shower",
+"volume_stream", "volume_sweetbird","volume_wind","volume_zombie",
+"volume_sealion","volume_howling","volume_bulldog");
+
+var volume_3 = new Array("volume_child", "volume_crowd","volume_doorbell",
+"volume_drum1", "volume_drum2", "volume_drum3", "volume_fan","volume_flipping",
+"volume_glassbar", "volume_jazz","volume_newage","volume_piano",
+"volume_rollercoaster","volume_traffic","volume_train");
+
+var span = new Array("span_bamboo", "span_campfire","span_disney",
+"span_evening", "span_jungle", "span_lake", "span_ocean","span_raindrop",
+"span_street", "span_thunder","span_wavewind","span_LP",
+"span_subway","span_marching","span_battle");
+
+var span_2 = new Array("span_cricket", "span_Cuckoos","span_exoticbird",
+"span_frog", "span_gulls", "span_owl", "span_shorewave","span_shower",
+"span_stream", "span_sweetbird","span_wind","span_zombie",
+"span_sealion","span_howling","span_bulldog");
+
+var span_3 = new Array("span_child", "span_crowd","span_doorbell",
+"span_drum1", "span_drum2", "span_drum3", "span_fan","span_flipping",
+"span_glassbar", "span_jazz","span_newage","span_piano",
+"span_rollercoaster","span_traffic","span_train");
+
+var audio_name = new Array("/bamboo.mp3", "/campfire.mp3","/disney.mp3",
+"/evening.mp3", "/jungle.mp3", "/lake.mp3", "/ocean.mp3","/raindrop.mp3",
+"/street.mp3", "/thunder.mp3","/wavewind.mp3","/LP.mp3","/subway.mp3","/marching.mp3","/battle.mp3");
+
+var audio_name_2 = new Array("/cricket.mp3", "/Cuckoos.mp3","/exoticbird.mp3",
+"/frog.mp3", "/gulls.mp3", "/owl.mp3", "/shorewave.mp3","/shower.mp3",
+"/stream.mp3", "/sweetbird.mp3","/wind.mp3","/zombie.mp3","/sealion.mp3",
+"/howling.mp3","/bulldog.mp3");
+
+var audio_name_3 = new Array("/child.mp3", "/crowd.mp3","/doorbell.mp3",
+"/drum1.mp3", "/drum2.mp3", "/drum3.mp3", "/fan.mp3","/flipping.mp3",
+"/glassbar.mp3", "/jazz.mp3","/newage.mp3","/piano.mp3",
+"/rollercoaster.mp3","/traffic.mp3","/train.mp3");
+
+var Media = new Array("Media0", "Media1","Media2","Media3","Media4","Media5","Media6","Media7","Media8","Media9","Media10","Media11","Media12","Media13","Media14");
+var Media_2 = new Array("Media_2_0", "Media_2_1","Media_2_2","Media_2_3","Media_2_4","Media_2_5","Media_2_6","Media_2_7","Media_2_8","Media_2_9","Media_2_10","Media_2_11","Media_2_12","Media_2_13","Media_2_14");
+var Media_3 = new Array("Media_3_0", "Media_3_1","Media_3_2","Media_3_3","Media_3_4","Media_3_5","Media_3_6","Media_3_7","Media_3_8","Media_3_9","Media_3_10","Media_3_11","Media_3_12","Media_3_13","Media_3_14");
+var Media0 = new Array(15);
+var Media0_2 = new Array(15);
+var Media0_3 = new Array(15);
+
+var volume_value = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+var volume_value_2 = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+var volume_value_3 = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+var audio_onoff= new Array("audio_onoff0","audio_onoff1","audio_onoff2","audio_onoff3","audio_onoff4",
+"audio_onoff5","audio_onoff6","audio_onoff7","audio_onoff8","audio_onoff9","audio_onoff10","audio_onoff11","audio_onoff12",
+"audio_onoff13","audio_onoff14");
+var audio_onoff_2= new Array("audio_onoff_2_0","audio_onoff_2_1","audio_onoff_2_2","audio_onoff_2_3","audio_onoff_2_4",
+"audio_onoff_2_5","audio_onoff_2_6","audio_onoff_2_7","audio_onoff_2_8","audio_onoff_2_9","audio_onoff_2_10","audio_onoff_2_11"
+,"audio_onoff_2_12","audio_onoff_2_13","audio_onoff_2_14");
+var audio_onoff_3= new Array("audio_onoff_3_0","audio_onoff_3_1","audio_onoff_3_2","audio_onoff_3_3","audio_onoff_3_4",
+"audio_onoff_3_5","audio_onoff_3_6","audio_onoff_3_7","audio_onoff_3_8","audio_onoff_3_9","audio_onoff_3_10","audio_onoff_3_11",
+"audio_onoff_3_12","audio_onoff_3_13","audio_onoff_3_14");
+
+function reset(){
+    var $ever = document.getElementsByClassName("every")
+    $.each($ever,function(k){
+       
+       $ever[k].pause();
+        
+    });
+    var $ever_span = document.getElementsByClassName("every_span")
+    $.each($ever_span,function(k){
+       
+        $ever_span[k].style.color = 'gray';
+        $ever_span[k].style.textDecoration = 'line-through';
+        
+    });
+    var $ever_player = document.getElementsByClassName("player")
+    $.each($ever_player,function(k){
+       
+        $ever_player[k].style.display = 'none';
+    });
+    
+    var $ever_volume = document.getElementsByClassName("volume")
+    $.each($ever_volume,function(k){
+       
+        $ever_volume[k].style.display = 'none';
+    });
+    
+    var $ever_audio = document.getElementsByClassName("eve")
+    $.each($ever_audio,function(k){
+       
+        $ever_audio[k].setAttribute('value',false);
+    });
+    
+    
+}
+
+function onoffPlay(i) {
+      var song = document.getElementById(Media[i]);
+      if(song.paused == false)
+       {
+            song.pause();
+            document.getElementById(volume[i]).style.display = 'none';
+            document.getElementById(player[i]).style.display = 'none';
+            document.getElementById(audio_onoff[i]).setAttribute('value',false); 
+            document.getElementById(span[i]).style.color = 'gray';
+            document.getElementById(span[i]).style.textDecoration = "line-through";
+       }
+       else
+       {
+        if(volume_value[i]==0){
+            song.volume = 0.5;
+            volume_value[i]=1;
+          }      
+            song.play();
+            document.getElementById(audio_onoff[i]).setAttribute('value',true); 
+            document.getElementById(volume[i]).style.display = 'flex';
+            document.getElementById(player[i]).style.display = 'flex';  
+            document.getElementById(span[i]).style.color = 'white';
+            document.getElementById(span[i]).style.color = 'white';
+            document.getElementById(span[i]).style.textDecoration = "none";
+       }
+}
+
+function onoffPlay_2(i) {
+      var song = document.getElementById(Media_2[i]);
+      
+      if(song.paused == false)
+       {
+            song.pause();
+            document.getElementById(volume_2[i]).style.display = 'none';
+            document.getElementById(player_2[i]).style.display = 'none';
+            document.getElementById(audio_onoff_2[i]).setAttribute('value',false); 
+            document.getElementById(span_2[i]).style.color = 'gray'; 
+            document.getElementById(span_2[i]).style.textDecoration = "line-through";
+       }
+       else
+       {
+            if(volume_value_2[i]==0){
+                song.volume = 0.5;
+                volume_value_2[i]=1;
+            }
+            song.play();
+            document.getElementById(volume_2[i]).style.display = 'flex';
+            document.getElementById(player_2[i]).style.display = 'flex';
+            document.getElementById(audio_onoff_2[i]).setAttribute('value',true); 
+            document.getElementById(span_2[i]).style.color = 'white';
+            document.getElementById(span_2[i]).style.textDecoration = "none";
+       }
+}
+
+
+
+function onoffPlay_3(i) {
+      var song = document.getElementById(Media_3[i]);
+      if(song.paused == false)
+       {
+            song.pause();
+            document.getElementById(volume_3[i]).style.display = 'none';
+            document.getElementById(player_3[i]).style.display = 'none';
+            document.getElementById(audio_onoff_3[i]).setAttribute('value',false); 
+            document.getElementById(span_3[i]).style.color = 'gray'; 
+            document.getElementById(span_3[i]).style.textDecoration = "line-through";
+       }
+       else
+       {
+            if(volume_value_3[i]==0){
+                song.volume = 0.5;
+                volume_value_3[i]=1;
+            }
+            song.play();
+            document.getElementById(volume_3[i]).style.display = 'flex';
+            document.getElementById(player_3[i]).style.display = 'flex'; 
+            document.getElementById(audio_onoff_3[i]).setAttribute('value',true); 
+            document.getElementById(span_3[i]).style.color = 'white';
+            document.getElementById(span_3[i]).style.textDecoration = "none";
+           
+       }
+}
+
+    $("#"+volume[0]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+
+            
+        	document.getElementById(Media[0]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume0")
+            inputElem.setAttribute('value',ui.value/100)
+               
+      	}
+    });
+       
+    $("#"+volume[1]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media[1]).volume = (ui.value/100);
+            var inputElem = document.getElementById("audio_volume1")
+            inputElem.setAttribute('value',ui.value/100)
+      	}
+    });
+    
+    $("#"+volume[2]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+           
+        	document.getElementById(Media[2]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume2")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+    
+    $("#"+volume[3]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media[3]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume3")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+    
+    $("#"+volume[4]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media[4]).volume = (ui.value/100);
+         	var inputElem = document.getElementById("audio_volume4")
+            inputElem.setAttribute('value',ui.value/100)  
+      	}
+    });
+    
+    $("#"+volume[5]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media[5]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume5")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+    
+    $("#"+volume[6]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media[6]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume6")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+    $("#"+volume[7]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media[7]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume7")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+    $("#"+volume[8]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media[8]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume8")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+    $("#"+volume[9]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media[9]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume9")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+        $("#"+volume[10]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media[10]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume10")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+        $("#"+volume[11]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media[11]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume11")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+        $("#"+volume[12]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media[12]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume12")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+        $("#"+volume[13]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media[13]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume13")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+        $("#"+volume[14]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media[14]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume14")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+    
+    $("#"+volume_2[0]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+           
+        	document.getElementById(Media_2[0]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume_2_0")
+            inputElem.setAttribute('value',ui.value/100)
+               
+      	}
+    });
+       
+    $("#"+volume_2[1]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media_2[1]).volume = (ui.value/100);
+            var inputElem = document.getElementById("audio_volume_2_1")
+            inputElem.setAttribute('value',ui.value/100)
+      	}
+    });
+    
+    $("#"+volume_2[2]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+           
+        	document.getElementById(Media_2[2]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume_2_2")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+    
+    $("#"+volume_2[3]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media_2[3]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume_2_3")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+    
+    $("#"+volume_2[4]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media_2[4]).volume = (ui.value/100);
+         	var inputElem = document.getElementById("audio_volume_2_4")
+            inputElem.setAttribute('value',ui.value/100)  
+      	}
+    });
+    
+    $("#"+volume_2[5]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media_2[5]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume_2_5")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+    
+    $("#"+volume_2[6]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media_2[6]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume_2_6")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+    $("#"+volume_2[7]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media_2[7]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume_2_7")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+    $("#"+volume_2[8]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media_2[8]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume_2_8")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+    $("#"+volume_2[9]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media_2[9]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume_2_9")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+        $("#"+volume_2[10]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media_2[10]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume_2_10")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+       $("#"+volume_2[11]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media_2[11]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume_2_11")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+       $("#"+volume_2[12]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media_2[12]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume_2_12")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+       $("#"+volume_2[13]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media_2[13]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume_2_13")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+       $("#"+volume_2[14]).slider({
+      	min: 0,
+        max: 100,
+      	value: 50,
+    	range: "min",
+      	slide: function(event, ui) {
+       
+        	document.getElementById(Media_2[14]).volume = (ui.value/100);
+        	var inputElem = document.getElementById("audio_volume_2_14")
+            inputElem.setAttribute('value',ui.value/100)   
+      	}
+    });
+
+    $("#"+volume_3[0]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+       range: "min",
+         slide: function(event, ui) {
+           
+           document.getElementById(Media_3[0]).volume = (ui.value/100);
+           var inputElem = document.getElementById("audio_volume_3_0")
+            inputElem.setAttribute('value',ui.value/100)
+               
+         }
+    });
+       
+    $("#"+volume_3[1]).slider({
+          min: 0,
+          max: 100,
+          value: 50,
+       range: "min",
+         slide: function(event, ui) {
+       
+           document.getElementById(Media_3[1]).volume = (ui.value/100);
+            var inputElem = document.getElementById("audio_volume_3_1")
+            inputElem.setAttribute('value',ui.value/100)
+         }
+    });
+    
+    $("#"+volume_3[2]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+       range: "min",
+         slide: function(event, ui) {
+           
+           document.getElementById(Media_3[2]).volume = (ui.value/100);
+           var inputElem = document.getElementById("audio_volume_3_2")
+            inputElem.setAttribute('value',ui.value/100)   
+         }
+    });
+    
+    $("#"+volume_3[3]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+       range: "min",
+         slide: function(event, ui) {
+       
+           document.getElementById(Media_3[3]).volume = (ui.value/100);
+           var inputElem = document.getElementById("audio_volume_3_3")
+            inputElem.setAttribute('value',ui.value/100)   
+         }
+    });
+    
+    $("#"+volume_3[4]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+       range: "min",
+         slide: function(event, ui) {
+       
+           document.getElementById(Media_3[4]).volume = (ui.value/100);
+            var inputElem = document.getElementById("audio_volume_3_4")
+            inputElem.setAttribute('value',ui.value/100)  
+         }
+    });
+    
+    $("#"+volume_3[5]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+       range: "min",
+         slide: function(event, ui) {
+       
+           document.getElementById(Media_3[5]).volume = (ui.value/100);
+           var inputElem = document.getElementById("audio_volume_3_5")
+            inputElem.setAttribute('value',ui.value/100)   
+         }
+    });
+    
+    $("#"+volume_3[6]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+       range: "min",
+         slide: function(event, ui) {
+       
+           document.getElementById(Media_3[6]).volume = (ui.value/100);
+           var inputElem = document.getElementById("audio_volume_3_6")
+            inputElem.setAttribute('value',ui.value/100)   
+         }
+    });
+    $("#"+volume_3[7]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+       range: "min",
+         slide: function(event, ui) {
+       
+           document.getElementById(Media_3[7]).volume = (ui.value/100);
+           var inputElem = document.getElementById("audio_volume_3_7")
+            inputElem.setAttribute('value',ui.value/100)   
+         }
+    });
+    $("#"+volume_3[8]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+         range: "min",
+         slide: function(event, ui) {
+       
+           document.getElementById(Media_3[8]).volume = (ui.value/100);
+           var inputElem = document.getElementById("audio_volume_3_8")
+            inputElem.setAttribute('value',ui.value/100)   
+         }
+    });
+    $("#"+volume_3[9]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+         range: "min",
+         slide: function(event, ui) {
+       
+           document.getElementById(Media_3[9]).volume = (ui.value/100);
+           var inputElem = document.getElementById("audio_volume_3_9")
+            inputElem.setAttribute('value',ui.value/100)   
+         }
+    });
+        $("#"+volume_3[10]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+         range: "min",
+         slide: function(event, ui) {
+       
+           document.getElementById(Media_3[10]).volume = (ui.value/100);
+           var inputElem = document.getElementById("audio_volume_3_10")
+            inputElem.setAttribute('value',ui.value/100)   
+         }
+    });
+        $("#"+volume_3[11]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+         range: "min",
+         slide: function(event, ui) {
+       
+           document.getElementById(Media_3[11]).volume = (ui.value/100);
+           var inputElem = document.getElementById("audio_volume_3_11")
+            inputElem.setAttribute('value',ui.value/100)   
+         }
+    });
+        $("#"+volume_3[12]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+         range: "min",
+         slide: function(event, ui) {
+       
+           document.getElementById(Media_3[12]).volume = (ui.value/100);
+           var inputElem = document.getElementById("audio_volume_3_12");
+            inputElem.setAttribute('value',ui.value/100);
+         }
+    }); 
+        $("#"+volume_3[13]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+       range: "min",
+         slide: function(event, ui) {
+       
+           document.getElementById(Media_3[13]).volume = (ui.value/100);
+           var inputElem = document.getElementById("audio_volume_3_13");
+            inputElem.setAttribute('value',ui.value/100);
+         }
+    }); 
+    
+     $("#"+volume_3[14]).slider({
+         min: 0,
+        max: 100,
+         value: 50,
+       range: "min",
+         slide: function(event, ui) {
+       
+           document.getElementById(Media_3[14]).volume = (ui.value/100);
+           var inputElem = document.getElementById("audio_volume_3_14");
+            inputElem.setAttribute('value',ui.value/100);   
+         }
+    }); 
+    
+for(var i = 0 ; i<15 ; i++){
+    Media0[i] = document.createElement('audio');
+    $("#"+player[i]).append(Media0[i]);
+    Media0[i].id = Media[i];
+    Media0[i].class = "every"
+   	Media0[i].src = audio_name[i];
+   	Media0[i].setAttribute('loop', 'loop');
+   	document.getElementById(Media[i]).volume = 0;
+    Media0[i].play();
+    Media0[i].pause();
+}
+
+for( var i = 0 ; i<15 ; i++){
+    Media0_2[i] = document.createElement('audio');
+    $("#"+player_2[i]).append(Media0_2[i]);
+    Media0_2[i].id = Media_2[i];
+    Media0_2[i].class = "every"
+   	Media0_2[i].src = audio_name_2[i];
+   	Media0_2[i].setAttribute('loop', 'loop');
+   	document.getElementById(Media_2[i]).volume = 0;
+   Media0_2[i].play() ;
+      Media0_2[i].pause();
+}
+
+for( var i = 0 ; i<15 ; i++){
+    Media0_3[i] = document.createElement('audio');
+    $("#"+player_3[i]).append(Media0_3[i]);
+    Media0_3[i].id = Media_3[i];
+    Media0_3[i].class = "every"
+   	Media0_3[i].src = audio_name_3[i];
+   	Media0_3[i].setAttribute('loop', 'loop');
+   	document.getElementById(Media_3[i]).volume = 0;
+   Media0_3[i].play();
+
+   Media0_3[i].pause(); 
+}
+
+
+
+
+
+</script>
+
+
+
+
+<style>
+$background: black;
+h1 {
+    font-weight: normal;
+    font-size: 40px;
+    font-weight: normal;
+    text-transform: uppercase;
+    span { 
+        font-size: 13px;
+        display: block;
+        padding-left: 4px;
+    }
+}
+p {
+  margin-top: 200px;
+  a {
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    color: #fff;
+    padding: 5px 10px;
+    margin: 0 5px;
+    background-color: darken($file-upload-color, 2);
+    @include transition(all 0.2s ease-in);
+    &:hover {
+      background-color: darken($file-upload-color, 5);
+    }
+  }
+}
+.custom-file-upload-hidden {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    left: -9999px;
+}
+.custom-file-upload {
+    display: inline-block;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 30px;
+
+    margin:0 auto;
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+}
+
+.file-upload-wrapper {
+    position: relative; 
+    margin-bottom: 5px;
+    //border: 1px solid #ccc;
+}
+.file-upload-input {
+    
+    width: $file-upload-size;
+    font-size: 13px;
+    height:31px;
+    border: none;
+    background-color: $file-upload-color; 
+    @include transition(all 0.2s ease-in); 
+    float: left; /* IE 9 Fix */
+    &:hover, &:focus { 
+        background-color: darken($file-upload-color, 5);
+        outline: none; 
+    }
+}
+.file-upload-button {
+    cursor: pointer; 
+    display: inline-block; 
+    color: black;
+    font-size: 13px;
+    height:31px;
+    border: none;
+    margin-left: -1px;  
+    background-color: darken($file-upload-color, 10); 
+    float: left; /* IE 9 Fix */
+    @include transition(all 0.2s ease-in);
+    &:hover {
+        background-color: darken($file-upload-color, 20);
+    }
+}
+
+.default_image_size{
+  width:240px;
+  height:180px;
+}
+
+
+.modal-header{
+    text-align:center;
+}
+</style>

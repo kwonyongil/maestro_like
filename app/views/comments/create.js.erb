@@ -1,0 +1,8 @@
+
+
+(function($){
+    $("#comment_content").val("")
+    $("#comments").append("<span><%= @comment.content %></span>
+    <a href="/posts/<%=@post.id%>/comments/<%=comment.id%>" data-method="delete">x</a>
+    <span class="writer"> 작성자 : <%= comment.user.name %></span>    <hr>");
+})(jQuery)

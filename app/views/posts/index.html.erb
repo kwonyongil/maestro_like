@@ -1,0 +1,318 @@
+<div class="whole">
+    <div class="container main">
+        <div class="playlist-logo">
+            <a href="/musics/playlist"><h2>Maestro</h2></a>
+        </div>
+            <div class="row">
+                <div class="col-sm-11">
+                    
+                </div>
+                <div class="col-sm-1">
+            <form class="searchbox">
+              <input type="search" placeholder="" name="search" class="searchbox-input" required>
+              <input type="submit" class="searchbox-submit" value="GO">
+              <span class="searchbox-icon"></span>
+             </form>
+                </div>
+            </div>
+        <div class="line"></div>
+        <div class="row">
+            <% @posts.each do |post| %>
+                <div class="col-sm-3">
+                    <div class="thumbnail">
+                        <div class="img_box">
+                            <% if post.playlist.image.present? %>
+                                <img class="imgs" src="<%= post.playlist.image %>">
+                            <%else%>
+                                <img src="/default_imgs2/<%=post.playlist.image2%>">      
+                            <%end%>
+                        </div>
+                        <div class="caption" >
+                            <p class="title"> #  <%=post.title%> </p>
+                         
+                            <p class="user_name"> by <%= post.user.name %> </p>
+                            <p class="font">
+                                <i class="fa fa-heart" aria-hidden="true"></i>  <%= post.likes.size %>
+                            </p> 
+                            <p class="blueprint">
+                                <i class="fa fa-commenting-o" aria-hidden="true"></i> <%= post.comments.count %>
+                            </p>
+                        </div>
+                        <a href="/posts/<%= post.id %>">
+                        <div class="overlay">
+                            <div class="text"> <p># See</p> <p>detail</p>  </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="paginationall">
+    <%= paginate @posts, window:2, outer_window:0 %>
+    </div>
+
+    
+    
+    
+</div>
+
+<script>
+$(document).ready(function(){
+
+            //Check if the current URL contains '#' 
+            if(document.URL.indexOf("#")==-1)
+            {
+                // Set the URL to whatever it was plus "#".
+                url = document.URL+"#";
+                location = "#";
+                //Reload the page
+                location.reload(true);
+            }
+});
+
+</script>
+
+<style>
+
+.font{
+    color: 	#ad0000;
+    text-align: left;
+}
+
+.blueprint {
+    color : #4682B4;
+    text-align: left;
+}
+
+.main{
+    padding-top: 10px;
+}
+.main_logo{
+    padding:30px;
+    color:lightgray;
+    text-align: center;
+}
+.whole{
+    background-color: #030303;
+}
+.thumbnail{
+    border: 1.5px solid #303030;
+    background-color: transparent;
+}
+.imgs{
+    width:100%;
+    padding:2px;
+    
+}
+.img_box{
+    width:100%;
+    height:24vh;
+    overflow:hidden;
+}
+.theme{
+    font-size:30px;
+    color: lightgray;
+    padding: 10px;
+}
+.glyphicon{
+    font-size:20px;
+    color: lightgrey;
+    float: right;
+    padding: 10px;
+}
+.title{
+    text-align:left;
+    color:lightgray;
+    text-decoration:none;
+    font-size:1.2em;
+}
+.user_name{
+    color: #505050s;
+    text-align:left;
+}
+.line{
+    width:100%;
+    height:2px;
+    background-color: gray;
+    margin-bottom: 20px;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15px;
+    right: 0;
+    height: 95%;
+    width: 90%;
+    opacity: 0;
+    border:1.5px solid lightgray;
+    transition: .5s ease;
+    background-color: rgba(0,0,0,0.8);
+}
+.thumbnail:hover .overlay {
+opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.col-sm-1 {
+  top: -16px;
+}
+
+
+
+.searchbox .searchbox-icon, .searchbox .searchbox-submit {
+  width: 45px;
+  height: 35px;
+  display: block;
+  position: absolute;
+  top: 0;
+
+  font-size: 18px;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  text-align: center;
+  cursor: pointer;
+  color: #d9d9d9;
+}
+
+.searchbox {
+  position: relative;
+  min-width: 44px;
+  width: 0;
+  height: 35px;
+  margin-top: 5.5px;
+  float: right;
+  overflow: hidden;
+  -webkit-transition: width 0.3s;
+  transition: width 0.3s;
+}
+.searchbox .searchbox-input {
+  top: 0;
+  right: 0;
+  border: 0;
+  outline: 0;
+  width: 100%;
+  height: 35px;
+  margin: 0;
+  padding: 0 20px 0 50px;
+  font-size: 16px;
+  color: #f5f5f5;
+  background-color: transparent;
+}
+.searchbox .searchbox-input::-moz-placeholder {
+  color: #d9d9d9;
+}
+.searchbox .searchbox-input:-moz-placeholder {
+  color: #d9d9d9;
+}
+.searchbox .searchbox-input::-ms-input-placeholder {
+  color: #d9d9d9;
+}
+.searchbox .searchbox-input::-webkit-input-placeholder {
+  color: #d9d9d9;
+}
+.searchbox .searchbox-icon:before {
+  display: block;
+  float: left;
+  max-width: 24px;
+  max-height: 24px;
+  margin-top: 5px;
+  margin-left: 10px;
+  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACBklEQVRIS7WUzVEbQRCF+22pdAUiMDpoe3UyjsByBCYDmwgsR2CIwBABKAKLCIwzgJNmVgcpBLiqStOu3ppVrYZhdilE33Zner7+ed2giJVl+V1EvhLRmIgO9YqI3AG4c85NR6PRKuYX+4fmz8ViMd5sNtcAjhMPPBLRJTNfdIFsAT7q68DpQUT0QQLwOTi7YeazNkgF0Midc38bl6fOufOwFMaYCYBzIjrwZbsqimKSglQAY8wKwAcf6Vme5zcvOZVleaL9qCFZln0ZDof6HTUEpbll5tO2tIOMkz6w1s6ISBVDzrlBV4VYa++J6CMRPTLz0YsZNMrzwMwnbdHX59Za7cUv/U6VSTMQ37B/RVGo7jvZawAqwwMReR+AMUYntNJ4v98/GgwGle7brNm7lB+8tn/7By+YWWubtPl8fpxl2bJLabFcLg/X67Xulmp4AHzK81wVEjV/X4eyEgSA5NzUg6YTWmehJZow8zQk+Mj/1I936dt2F1lrdXq/1Y+KyCrLslm9i0RkDCCmshmAVZ7nP2Mp72zTpvRSTdDIAega10GrLbr8dgB605dBG60ro+pLw24BzHRXGWMuAfwIzp9BngGaDrrYfKTU6/XumxK21moA2o/QdiBJQJtcEyXdQt4E0ABCcYQ9eTMgBRGRq70AEpCnvQEikCcAk70CGpBTHUpdOf8BdIUMqeoRfLEAAAAASUVORK5CYII=");
+}
+.searchbox .searchbox-icon:after {
+  content: '';
+  width: 1px;
+  height: 29px;
+  margin-top: 3px;
+  background-color: rgba(216, 216, 216, 0.5);
+  display: block;
+  float: right;
+}
+.searchbox .searchbox-submit {
+  opacity: 0;
+}
+.searchbox.searchbox-open {
+  background-color: rgba(245, 245, 245, 0.3);
+  border-radius: 3px;
+  width: 280px;
+}
+
+.title {
+  width:185px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+
+
+.paginationall{
+    text-align:center;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: white;
+    float: center;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+.page.current{
+    color: white;
+    float: center;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {background-color:#3366BB; }
+</style>
+<script>"use strict";
+
+$(function () {
+	var submitIcon = $(".searchbox-icon");
+	var inputBox = $(".searchbox-input");
+	var searchBox = $(".searchbox");
+	var isOpen = false;
+
+	submitIcon.click(function () {
+		if (!isOpen) {
+			searchBox.addClass("searchbox-open");
+			inputBox.focus();
+			isOpen = true;
+		} else {
+			searchBox.removeClass("searchbox-open");
+			inputBox.focusout();
+			isOpen = false;
+		}
+	});
+	submitIcon.mouseup(function () {
+		return false;
+	});
+	searchBox.mouseup(function () {
+		return false;
+	});
+	$(document).mouseup(function () {
+		if (isOpen) {
+			$(".searchbox-icon").css("display", "block");
+			submitIcon.click();
+		}
+	});
+});</script>
