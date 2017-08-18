@@ -24,23 +24,29 @@
                             <% if post.playlist.image.present? %>
                                 <img class="imgs" src="<%= post.playlist.image %>">
                             <%else%>
-                                <img src="/default_imgs2/<%=post.playlist.image2%>">      
+                                <img class="imgs" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image/<%=post.playlist.image2%>">      
                             <%end%>
                         </div>
                         <div class="caption" >
                             <p class="title"> #  <%=post.title%> </p>
-                         
+                            <% if post.user == nil %>
+                            <p class="user_name"> by no account Withdrawal member</p> 
+                            <% else %>
                             <p class="user_name"> by <%= post.user.name %> </p>
+                            <% end %>
                             <p class="font">
                                 <i class="fa fa-heart" aria-hidden="true"></i>  <%= post.likes.size %>
                             </p> 
                             <p class="blueprint">
                                 <i class="fa fa-commenting-o" aria-hidden="true"></i> <%= post.comments.count %>
                             </p>
+                            <p class="font">
+                                <%= "#{post.unique_impression_count} views" %>
+                            </p>
                         </div>
                         <a href="/posts/<%= post.id %>">
                         <div class="overlay">
-                            <div class="text"> <p># See</p> <p>detail</p>  </div>
+                            
                         </div>
                         </a>
                     </div>
@@ -56,22 +62,6 @@
     
     
 </div>
-
-<script>
-$(document).ready(function(){
-
-            //Check if the current URL contains '#' 
-            if(document.URL.indexOf("#")==-1)
-            {
-                // Set the URL to whatever it was plus "#".
-                url = document.URL+"#";
-                location = "#";
-                //Reload the page
-                location.reload(true);
-            }
-});
-
-</script>
 
 <style>
 
@@ -104,11 +94,13 @@ $(document).ready(function(){
     width:100%;
     padding:2px;
     
+    
 }
 .img_box{
     width:100%;
     height:24vh;
     overflow:hidden;
+    
 }
 .theme{
     font-size:30px;
@@ -148,7 +140,7 @@ $(document).ready(function(){
     opacity: 0;
     border:1.5px solid lightgray;
     transition: .5s ease;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.6);
 }
 .thumbnail:hover .overlay {
 opacity: 1;

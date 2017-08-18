@@ -1,10 +1,13 @@
+<input type="hidden" value="<%=@post.id %>" id="hidden-post_id"></input>
 <div class="whole">
     <div class="container main">
         <a href="/musics/playlist" class="hovernot"><h1 class="main_logo">Maestro</h1></a>
         <div class="row">
             <div class="col-sm-10"></div>
             <div class="col-sm-2 infos">
+                <% if can? :update, @post %>
                 <%= link_to 'Edit', edit_post_path(@post), class: "show-nav" %> |
+                <% end %>
                 <%= link_to 'list', posts_path, class: "show-nav" %>
             </div>
         </div>
@@ -13,16 +16,16 @@
             <div class="col-sm-6">
                 <div class="thumbnail-wrapper"> 
                 <div class="thumbnail">
-                 <div class="centered">
+                <div class="centered">
                     <% if @post.playlist.image.present? %>
                         <img src="<%= @post.playlist.image %>" class="playlist-image"></img>
                     <% else %>
-                        <img src="/default_imgs/<%=@post.playlist.image2%>" class="playlist-image">
+                        <img src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image2/<%=@post.playlist.image2%>" class="playlist-image">
                     <% end %>
                     
-     </div>
-    </div>
-    </div>      
+                </div>
+                </div>
+                </div>      
             </div>
             <div class="col-sm-6 raw_music">
                 <% @volume = Array.new %>
@@ -33,7 +36,7 @@
                 <div class="music_item">
                     <span><%= u.name%></span>
                     <div class="player_show">
-                        <audio id="audio<%=i%>"class="audio__playlist" src="/<%=u.name %>.mp3" loop autoplay></audio>
+                        <audio id="audio<%=i%>"class="audio__playlist" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/music/<%=u.name %>.mp3" loop autoplay></audio>
                         <div id="volume_<%=i%>" class="volume_show"></div>   
                     </div>
                 </div>
@@ -47,53 +50,54 @@
                 
             </div>
             <div class="col-sm-6">
-                <div class="row">
-                    <div class="col-sm-12">
+                <div class="row" >
+                    <div class="col-sm-12" id="like_a">
                         <% if current_user.is_like?(@post) %>
-                        <p class="likes">
-                            <%= link_to "♥", post_like_path(@post), method: "post", :class => "likebutton_yes"%>
+                        
+                            <span class="likebutton_yes" id="_yes">♥</span>
+                            
                              <% else %>
-                            <%= link_to "♡", post_like_path(@post), method: "post", :class => "likebutton_no"%>
+                            <span class="likebutton_no" id="_no">♡</span>
+                            
                             <% end %>
-                            <%= @post.likes.size %> likes
-                        </p>
+                            <span id="like_si">
+                                <%= @post.likes.size %> likes
+                            </span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-10">
-                        <form action="/posts/<%=@post.id%>" method="post" >
+                        
                         <div class="form-group">
-                        <input type="hidden" value="<%=current_user.id%>" name="user_id"></input>
-                        <input type="hidden" value="<%=@post.id%>" name="post_id"></input>
+                        <input type="hidden" id="hidden_user_id" value="<%=current_user.id%>" name="user_id"></input>
+                        <input type="hidden" id="hidden_user_name" value="<%=current_user.name%>" name="user_name"></input>
+                        <input type="hidden" id="hidden_post_id" value="<%=@post.id%>" name="post_id"></input>
+                        <input type="hidden" id="hidden_like" value="<%=@post.likes.size %>" name="like_id"></input>
                         <textarea class="form-control comment_blank" rows="1" name="comment" id="comment_content"></textarea>
                        </div>
                     </div>
                     <div class="col-sm-2">
-                       <button type="submit" class="comment-button">post</button>
-                      </form>
+                       <button type="submit" class="comment-button" id="<%=@post.id%>">post</button>
+                      
                     </div>
                 </div>
-        <div class="row">
-            <div class="col-sm-12 " id="comments">
-               
-                <% @comments = @post.comments.order('created_at DESC').page(params[:page]).per(2) %>
-                <% @comments.each do |comment| %>
-               
-                <span><%= comment.content %></span>
-                   <%= link_to "x", "/posts/#{@post.id}/comments/#{comment.id}",
-                        method: :delete,
-                        remote: true,
-                        data: {confirm: "정말로 삭제하시겠습니까?"} %>
-                 <span class="writer"> 작성자 : <%= comment.user.name %></span>
-                  <hr>
-                   
-                <% end %>
-                <div class="paginationall">
-              <%= paginate @comments, window:2, outer_window:0 %>
-              </div>
-            </div> 
-        </div>
-        </div>
+                <div class="row">
+                    <div class="col-sm-12 " id="comments">
+                        <% @comments = @post.comments.order('created_at DESC').page(params[:page]).per(2) %>
+                        <% @comments.each do |comment| %>
+                            <span id="<%=comment.id %>-content"><%= comment.content %></span>
+                            <% if current_user.id == comment.user_id %>
+                            <a class="comment-destroy" id="<%=comment.id %>" onclick="alert('삭제하시겠습니까?')">x</a>
+                               
+                            <% end %>
+                            <span class="writer" id="<%=comment.id %>-wr"> 작성자 : <%= comment.user.name %></span><br id="<%=comment.id %>-br">
+                        <% end %>
+                        <div class="paginationall">
+                          <%= paginate @comments, window:2, outer_window:0 %>
+                        </div>
+                    </div> 
+                </div>
+            </div>
         </div>
         <div class="row add">
             <form action="posts/show" method="post">
@@ -108,8 +112,95 @@
 </div>
 
 <script>
+$('#_yes').click(function(){
+   console.log("좋아요"); 
+   var like_size = $("#hidden_like").val();
+   like_size = Number(like_size) - 1;
+   var post_id = $("#hidden_post_id").val();
+   console.log(like_size);
+   $.ajax({
+      method:"POST",
+      url:"/posts/"+post_id+"/like",
+      data:{post_id: post_id},
+      dataType:"JSON"
+   });
+   $('#_yes').remove();
+   $('#like_si').remove();
+
+   $('#like_a').append("<span class='likebutton_no' id='_no'>♡</span>");
+    $('#like_a').append("<span id='like_si'> "+ like_size+" likes</span>");
+});
+
+
+
+$('#_no').click(function(){
+   console.log("좋아요"); 
+   var like_size = $("#hidden_like").val();
+    like_size = Number(like_size) + 1;
+   var post_id = $("#hidden_post_id").val();
+   console.log(like_size);
+   $.ajax({
+      method:"POST",
+      url:"/posts/"+post_id+"/like",
+      data:{post_id: post_id},
+      dataType:"JSON"
+   });
+   $('#_no').remove();
+    $('#like_si').remove();
+   $('#like_a').append("<span class='likebutton_yes' id='_yes'>♥</span>");
+    $('#like_a').append("<span id='like_si'> "+ like_size+" likes</span>");
+
+   
+ 
+});
+
+$('.comment-destroy').click(function(){
+   console.log("삭제버튼 클릭"); 
+   var comment_id = $(this).attr("id");
+   var post_id = $("#hidden-post_id").val();
+   console.log(comment_id);
+   $.ajax({
+      method:"POST",
+      url:"/posts/"+post_id+"/comments/"+comment_id
+   });
+   $('#'+comment_id +'-content').remove();
+   $('#'+comment_id).remove();
+   $('#'+comment_id+'-wr').remove();
+   $('#'+comment_id+'-br').remove()
+});
+
+
+$('.comment-button').click(function(){
+   console.log("댓글버튼 클릭"); 
+   
+   var post_id = $("#hidden_post_id").val();
+   var user_id = $("#hidden_user_id").val();
+   var user_name = $("#hidden_user_name").val();
+   var comment = $("#comment_content").val();
+   /* console.log(comment_id); */
+   $.ajax({
+      method:"POST",
+      url:"/posts/"+post_id,
+      data:{post_id: post_id, user_id:user_id, comment:comment, user_name:user_name},
+      dataType:"JSON"
+    })
+    $("#comment_content").val("");
+    $("#comments").append("<span>"+comment+"</span>");
+   $("#comments").append("<span class='writer'> 작성자 : "+user_name+"</span><br>");
+                      
+                   
+                        
+  });
+
+
 
 //1
+function like_yes(){
+    
+}
+function like_no(){
+    
+}
 
 $(function () {
     var $audi = new Array();
@@ -122,6 +213,7 @@ $(function () {
         var volvalue = <%= @volume %>;
         
         AUDIO.volume = volvalue[i];
+
     
         $vol.slider({
             min:0,
@@ -285,7 +377,3 @@ span,p{
 .pagination a:hover:not(.active) {background-color:#3366BB; }
 
 </style>
-
-
-
-  

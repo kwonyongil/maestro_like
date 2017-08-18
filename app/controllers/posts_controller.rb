@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :log_impression, :only=> [:show]
 
   # GET /posts
   # GET /posts.json
@@ -24,6 +25,7 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @playlist = Playlist.find(@post.playlist_id)
+    authorize! :update, @post
   end
 
   # POST /posts
@@ -81,6 +83,14 @@ class PostsController < ApplicationController
     @playlist.save
     redirect_to '/musics/playlist'
   end
+  
+  def log_impression
+    @hit_post = Post.find(params[:id])
+    # this assumes you have a current_user method in your authentication system
+    @hit_post.impressions.create(ip_address: request.remote_ip,user_id:current_user.id)
+  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

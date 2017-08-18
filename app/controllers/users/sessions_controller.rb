@@ -5,7 +5,9 @@ class Users::SessionsController < Devise::SessionsController
   # def new
   #   super
   # end
-
+def signajax
+  
+end
   # POST /resource/sign_in
   # def create
   #   super

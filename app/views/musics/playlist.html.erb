@@ -1,3 +1,9 @@
+
+
+    <div id="page">
+    <div id="loader">
+   
+<div id="content">
 <div class="container-fluid playlist-body">
     <div class="row">
         <div class="col-sm-9 full">
@@ -8,64 +14,62 @@
                         <div class="row">
                             <div class="col-sm-8">
                                 <div class="playlist-logo">
-                                    <a href="/musics/playlist" onClick="soundoff('audio_off')"><div>Maestro</div>
+                                    <a href="/musics/playlist" onClick="soundoff('audio_off')">
+                                    
                                 </div>
                             </div>
-                    <div class="col-sm-2 account">
+                    <div class="col-sm-3 account">
+                        
                         <a href="../users/edit" id="allstopButton">account</a>
-                        <a href="../users/sign_out" onClick="soundoff('audio_off')">logout</a>
+                        <a href="../users/sign_out" onClick='ktout()'>logout</a>
                     </div>
-                    
                         </div>
                     </div>
                     <div class="sound_button">
-                            <img id="soundimg" src="/audio_on_icon.png" class="playlist-play-icon" onClick="PlaySound('audio__playlist__3')">
+                        <img id="soundimg" src="/audio_on_icon.png" class="playlist-play-icon" onClick="PlaySound('audio__playlist__3')">
                     </div>
                     <div class="playlist-small-bundle">
-                    
                         <!-- Trigger the modal with a button -->
                         <button id = "Modal" type="button" data-toggle="modal" data-target="#myModal8">Edit sound</button>
-                        
-                        <div id="writer_name">sound by writer</div>
+                        <div id="writer_name">sound by Maestro</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-3 sub">
             <div class="row">
-
                 <div id="menu">
                     <div class="name">my playlist</div>
                     <div class="panel number1">
                         <div class="bird">
-                      <img class="name1 picture first" onClick="modal5Go()" src="/nightcafe.png" alt="">
-                        <span class="transition overlay">
-                            <h3># night cafe</h3>
-                        </span>
+                            <img class="name1 picture first" onClick="modal5Go()" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_playlist_image/nightcafe.png" alt="">
+                            <span class="transition overlay">
+                                <h3># night cafe</h3>
+                            </span>
                         </div>
                     </div>
                     <div class="panel number2">
                         <div class="bird">
-                      <img class="name2 picture" onClick="modal6Go()" src="/seashore.png" alt="">
+                            <img class="name2 picture" onClick="modal6Go()" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_playlist_image/seashore.png" alt="">
                             <span class="transition overlay">
-                            <h3># seashore</h3>
-                        </span>
+                                <h3># seashore</h3>
+                            </span>
                         </div>
                     </div>
                     <div class="panel number3">
                         <div class="bird">
-                      <img class="name3 picture" onClick="modal7Go()" src="/rainystreet.png" alt="">
-                        <span class="transition overlay">
-                            <h3># rainy street</h3>
-                        </span>
+                            <img class="name3 picture" onClick="modal7Go()" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_playlist_image/rainystreet.png" alt="">
+                            <span class="transition overlay">
+                                <h3># rainy street</h3>
+                            </span>
                         </div>
                     </div>
                     <div class="panel number4">
                         <div class="bird">
-                      <img class="name4 picture" onClick="modal8Go()" src="/camping.png" alt="">
-                        <span class="transition overlay">
-                            <h3># camping</h3>
-                        </span>
+                            <img class="name4 picture" onClick="modal8Go()" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_playlist_image/camping.png" alt="">
+                            <span class="transition overlay">
+                                <h3># camping</h3>
+                            </span>
                         </div>
                     </div>
                     <% @playlists.each_with_index do |playlist,k| %>
@@ -76,11 +80,15 @@
                                     <% if playlist.image.present? %>
                                         <%= image_tag("#{playlist.image}", :style  =>"width: 100%; ", :class=>"picture name5", :onClick=>"modalGo()" ) %>
                                     <% else %>
-                                        <img src="/default_imgs2/<%=playlist.image2%>" style="width: 100%;" class="picture name5" onClick="modalGo()">
+                                        <img src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image/<%=playlist.image2%>" style="width: 100%;" class="picture name5" onClick="modalGo()">
                                     <% end %>
                                     <span class="transition overlay">
                                         <h3># <%=playlist.name%></h3>
                                     </span>
+                                    <%= link_to "x", "/playlists/#{playlist.id}", class: "transition play_del",
+                                        method: :delete,
+                                        data: {confirm: "정말로 삭제하시겠습니까?"}
+                                    %>
                                 </div>
                             </div>    
                         <% elsif k==1%>
@@ -89,24 +97,32 @@
                                      <% if playlist.image.present? %>
                                         <%= image_tag("#{playlist.image}", :style  =>"width: 100%;", :class=>"picture name6", :onClick=>"modal2Go()" ) %>
                                     <% else %>
-                                        <img src="/default_imgs2/<%=playlist.image2%>" style="width: 100%; " class="picture name6" onClick="modal2Go()">
+                                        <img src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image/<%=playlist.image2%>" style="width: 100%; " class="picture name6" onClick="modal2Go()">
                                     <% end %>
                                     <span class="transition overlay">
                                         <h3># <%=playlist.name%></h3>
                                     </span>
+                                    <%= link_to "x", "/playlists/#{playlist.id}", class: "transition play_del",
+                                    method: :delete,
+                                    data: {confirm: "정말로 삭제하시겠습니까?"}
+                                    %>
                                 </div>
                             </div>                      
                         <% elsif k==2%>
                             <div class="panel number7">
                                 <div class="bird">
                                     <% if playlist.image.present? %>
-                                    <%= image_tag("#{playlist.image}", :style  =>"width: 100%;", :class=>"picture name7", :onClick=>"modal3Go()" ) %>
+                                        <%= image_tag("#{playlist.image}", :style  =>"width: 100%;", :class=>"picture name7", :onClick=>"modal3Go()" ) %>
                                     <% else %>
-                                        <img src="/default_imgs2/<%=playlist.image2%>" style="width: 100%; " class="picture name7" onClick="modal3Go()">
+                                        <img src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image/<%=playlist.image2%>" style="width: 100%; " class="picture name7" onClick="modal3Go()">
                                     <% end %>
                                     <span class="transition overlay">
                                         <h3># <%=playlist.name%></h3>
-                                    </span>
+                                    </span>                         
+                                    <%= link_to "x", "/playlists/#{playlist.id}", class: "transition play_del",
+                                    method: :delete,
+                                    data: {confirm: "정말로 삭제하시겠습니까?"}
+                                    %>
                                 </div>
                             </div>     
                         <% else %>
@@ -115,15 +131,19 @@
                                     <% if playlist.image.present?  %>
                                         <%= image_tag("#{playlist.image}", :style  =>"width: 100%;", :class=>"picture name8", :onClick=>"modal4Go()" ) %>
                                     <% else %>
-                                        <img src="/default_imgs2/<%=playlist.image2%>" style="width: 100%; " class="picture name8" onClick="modal4Go()">
+                                        <img src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image/<%=playlist.image2%>" style="width: 100%; " class="picture name8" onClick="modal4Go()">
                                     <% end %>
                                     <span class="transition overlay">
                                         <h3># <%=playlist.name%></h3>
                                     </span>
+                                    <%= link_to "x", "/playlists/#{playlist.id}", class: "transition play_del",
+                                    method: :delete,
+                                  
+                                    data: {confirm: "정말로 삭제하시겠습니까?"}
+                                    %>
                                 </div>
                             </div>                             
                         <%end%>
- 
                     <%end%>
                 </div>
             </div>
@@ -138,9 +158,27 @@
                 </div>
             </div>
         </div>
+    </div>
 </div>
 
-</div>
+<!-- Modal tutorial -->
+
+<div class="modal fade" id="modaltutorial"  role="dialog" aria-labelledby="myModalLabel" >
+    <div class="modal-dialog">
+        <div class="modal-content"> 
+            <div class="modal-header"> 
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span></button> <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            
+            <div class="modal-body">
+                <img src="http://kr.seaicons.com/wp-content/uploads/2017/02/maestro-icon.png">
+            </div> 
+        </div> 
+    </div> 
+</div> 
+ 
+
 
 
 
@@ -171,7 +209,7 @@
                                         <% @volume[k][i] = u.volume %>
                                         <% @writer[k] = playlist.writer %>
                                        
-                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist_<%=k%> audio_off" src="/<%=u.name %>.mp3" loop >
+                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist_<%=k%> audio_off" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/music/<%=u.name %>.mp3" loop >
                                         </audio>
                                         <div id="volume_<%=k%>_<%=i%>" class="volume3"></div>
                                         <br>
@@ -217,7 +255,7 @@
                                     <div class="player__playlist">
                                         <% @volume[k][i] = u.volume %>
                                         <% @writer[k] = playlist.writer %>
-                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist_<%=k%> audio_off" src="/<%=u.name %>.mp3" loop>
+                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist_<%=k%> audio_off" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/music/<%=u.name %>.mp3" loop>
                                         </audio>
                                         <div id="volume_<%=k%>_<%=i%>" class="volume3"></div>
                                         <br>
@@ -263,7 +301,7 @@
                                     <div class="player__playlist">
                                         <% @volume[k][i] = u.volume %>
                                         <% @writer[k] = playlist.writer %>
-                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist_<%=k%> audio_off" src="/<%=u.name %>.mp3" loop>
+                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist_<%=k%> audio_off" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/music/<%=u.name %>.mp3" loop>
                                         </audio>
                                         <div id="volume_<%=k%>_<%=i%>" class="volume3"></div>
                                         <br>
@@ -309,7 +347,7 @@
                                 <div class="player__playlist">
                                     <% @volume[k][i] = u.volume %>
                                     <% @writer[k] = playlist.writer %>
-                                    <audio id="audio<%=k%><%=i%>"class="audio__playlist_<%=k%> audio_off" src="/<%=u.name %>.mp3" loop>
+                                    <audio id="audio<%=k%><%=i%>"class="audio__playlist_<%=k%> audio_off" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/music/<%=u.name %>.mp3" loop>
                                     </audio>
                                     <div id="volume_<%=k%>_<%=i%>" class="volume3"></div>
                                     <br>
@@ -336,11 +374,11 @@
 
 <% @default_audio_array = [["raindrop.mp3", "child.mp3", "crowd.mp3", "doorbell.mp3","glassbar.mp3","jazz.mp3"],
 ["ocean.mp3", "gulls.mp3", "shorewave.mp3"],["shower.mp3"],
-["campfire.mp3", "cricket.mp3", "exoticbird.mp3", "frog.mp3","newage.mp3"]] %>
+["campfire.mp3", "cricket.mp3", "exoticbird.mp3", "frog.mp3","piano2.mp3"]] %>
 <% @default_volume_array = [[0.2,0.1,0.25,0.15,0.15,0.7],[0.5,0.25,0.3],[0.5],[0.1,0.3,0.2,0.1,0.2]] %>
 <% @default_name_array = [["raindrop", "child", "crowd", "doorbell","glassbar","jazz"],
 ["ocean", "gulls", "shorewave"],["shower"],
-["campfire", "cricket", "exoticbird", "frog","newage"]] %>
+["campfire", "cricket", "exoticbird", "frog","piano2"]] %>
 
 <!-- Modal5 -->
 <div class="modal fade" id="myModal5" role="dialog"> 
@@ -359,7 +397,7 @@
                                 <div class="modal-item">                        
                                     <span><%=@default_name_array[0][i]%></span>
                                     <div class="player__playlist">
-                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist__<%=k%> audio_off" src="/<%= default_audio %>" loop >
+                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist__<%=k%> audio_off" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/music/<%= default_audio %>" loop >
                                         </audio>
                                         <div id="volume_<%=k%>__<%=i%>" class="volume3"></div>
                                         <br>
@@ -391,7 +429,7 @@
                                 <div class="modal-item">
                                     <span><%=@default_name_array[1][i]%></span>                           
                                     <div class="player__playlist">
-                                    <audio id="audio<%=k%><%=i%>"class="audio__playlist__<%=k%> audio_off" src="/<%= default_audio %>" loop >
+                                    <audio id="audio<%=k%><%=i%>"class="audio__playlist__<%=k%> audio_off" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/music/<%= default_audio %>" loop >
                                     </audio>
                                     <div id="volume_<%=k%>__<%=i%>" class="volume3"></div>
                                     <br>
@@ -424,7 +462,7 @@
                             <div class="modal-item">
                                 <span><%=@default_name_array[2][i]%></span>
                                 <div class="player__playlist">
-                                    <audio id="audio<%=k%><%=i%>"class="audio__playlist__<%=k%> audio_off" src="/<%= default_audio %>" loop >
+                                    <audio id="audio<%=k%><%=i%>"class="audio__playlist__<%=k%> audio_off" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/music/<%= default_audio %>" loop >
                                     </audio>
                                     <div id="volume_<%=k%>__<%=i%>" class="volume3"></div>
                                     <br>
@@ -457,7 +495,7 @@
                                 <div class="modal-item">     
                                     <span><%=@default_name_array[3][i]%></span>
                                     <div class="player__playlist">
-                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist__<%=k%> audio_off" src="/<%= default_audio %>" autoplay loop >
+                                        <audio id="audio<%=k%><%=i%>"class="audio__playlist__<%=k%> audio_off" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/music/<%= default_audio %>" autoplay loop >
                                         </audio>
                                         <div id="volume_<%=k%>__<%=i%>" class="volume3"></div>
                                         <br>
@@ -471,22 +509,17 @@
         </div>
     </div>
 </div>
+
+<div>
+
+
+
+
 <script>
 
-$(document).ready(function(){
-    //Check if the current URL contains '#' 
-    if(document.URL.indexOf("#")==-1)
-    {
-        // Set the URL to whatever it was plus "#".
-        url = document.URL+"#";
-        location = "#";
-        //Reload the page
-        location.reload(true);
-    }
-});
 
 //1
-var writers = new Array("writer","writer","writer","writer")
+var writers = new Array("Maestro","Maestro","Maestro","Maestro")
 <% for j in 0..3 do %>
     <% if @writer[j] != nil %>
         writers[<%=j%>] = "<%= @writer[j] %>"
@@ -553,16 +586,13 @@ $(function () {
     });
 });
 function soundoff(sound) {
-
 var thesound=document.getElementsByClassName(sound);
-
     $.each(thesound,function(i){
         thesound[i].pause();
     });
 }
 
 function PlaySound(soundobj) {
-
 var thissound=document.getElementsByClassName(soundobj);
 if (m == 0){
     $.each(thissound,function(i){
@@ -584,7 +614,7 @@ else
 function modalGo(){
     $('#Modal').attr('data-target','#myModal');
     $('#soundimg').attr('onClick',"PlaySound('audio__playlist_0')");
-    $('#backgroundimg').attr('src',"/camping.png");
+   
     // db variable
     var audio0 = document.getElementsByClassName('audio__playlist_0');
     var audio1 = document.getElementsByClassName('audio__playlist_1');
@@ -595,7 +625,6 @@ function modalGo(){
     var audio5 = document.getElementsByClassName('audio__playlist__1');
     var audio6 = document.getElementsByClassName('audio__playlist__2');
     var audio7 = document.getElementsByClassName('audio__playlist__3');
- 
     
     document.getElementById("writer_name").innerHTML = "sound by "+writers[0];
     <% @playlists.each_with_index do |playlist,k| %>
@@ -603,22 +632,22 @@ function modalGo(){
             <% if playlist.image.present? %>
                 document.getElementById("playlist-img").style.backgroundImage = "url('<%=playlist.image%>')";
             <% else %>
-                document.getElementById("playlist-img").style.backgroundImage = "url('/default_imgs/<%=playlist.image2%>')";
+                document.getElementById("playlist-img").style.backgroundImage = "url('https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image2/<%=playlist.image2%>')";
             <%end%>
     
         <%end%>
     <%end%>
     $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
     $.each(audio0, function(i){
-     audio0[i].play();   
+     audio0[i].play();
     });
     
     $.each(audio1, function(i){
-     audio1[i].pause();   
+     audio1[i].pause();
     });
     
     $.each(audio2, function(i){
-     audio2[i].pause();   
+     audio2[i].pause();
     });
     
     $.each(audio3, function(i){
@@ -647,7 +676,7 @@ function modalGo(){
 function modal2Go(){
     $('#Modal').attr('data-target','#myModal2');
     $('#soundimg').attr('onClick',"PlaySound('audio__playlist_1')");
-    $('#backgroundimg').attr('src',"/nightcafe.png");
+    
     // db variable
     var audio0 = document.getElementsByClassName('audio__playlist_0');
     var audio1 = document.getElementsByClassName('audio__playlist_1');
@@ -664,7 +693,7 @@ function modal2Go(){
           <% if playlist.image.present? %>
                 document.getElementById("playlist-img").style.backgroundImage = "url('<%=playlist.image%>')";
             <% else %>
-                document.getElementById("playlist-img").style.backgroundImage = "url('/default_imgs/<%=playlist.image2%>')";
+                document.getElementById("playlist-img").style.backgroundImage = "url('https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image2/<%=playlist.image2%>')";
             <%end%>
         <%end%>
     <%end%>
@@ -685,7 +714,7 @@ function modal2Go(){
      audio3[i].pause();   
     });
     
-     $.each(audio4, function(i){
+    $.each(audio4, function(i){
      audio4[i].pause();   
     });
     
@@ -707,7 +736,7 @@ function modal2Go(){
 function modal3Go(){
     $('#Modal').attr('data-target','#myModal3');
     $('#soundimg').attr('onClick',"PlaySound('audio__playlist_2')");
-    $('#backgroundimg').attr('src',"/rainystreet.png");
+    
     // db variable
     var audio0 = document.getElementsByClassName('audio__playlist_0');
     var audio1 = document.getElementsByClassName('audio__playlist_1');
@@ -724,7 +753,7 @@ function modal3Go(){
             <% if playlist.image.present? %>
                     document.getElementById("playlist-img").style.backgroundImage = "url('<%=playlist.image%>')";
             <% else %>
-                    document.getElementById("playlist-img").style.backgroundImage = "url('/default_imgs/<%=playlist.image2%>')";
+                    document.getElementById("playlist-img").style.backgroundImage = "url('https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image2/<%=playlist.image2%>')";
             <%end%>
             
         <%end%>
@@ -747,7 +776,7 @@ function modal3Go(){
     });
     
      $.each(audio4, function(i){
-     audio4[i].pause();   
+     audio4[i].pause();
     });
     
     $.each(audio5, function(i){
@@ -769,7 +798,7 @@ function modal3Go(){
 function modal4Go(){
     $('#Modal').attr('data-target','#myModal4');
     $('#soundimg').attr('onClick',"PlaySound('audio__playlist_3')");
-    $('#backgroundimg').attr('src',"/seashore.png");
+    
     // db variable
     var audio0 = document.getElementsByClassName('audio__playlist_0');
     var audio1 = document.getElementsByClassName('audio__playlist_1');
@@ -786,9 +815,8 @@ function modal4Go(){
             <% if playlist.image.present? %>
                 document.getElementById("playlist-img").style.backgroundImage = "url('<%=playlist.image%>')";
             <% else %>
-                document.getElementById("playlist-img").style.backgroundImage = "url('/default_imgs/<%=playlist.image2%>')";
+                document.getElementById("playlist-img").style.backgroundImage = "url('https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image2/<%=playlist.image2%>')";
             <%end%>
-    
         <%end%>
     <%end%>
     
@@ -832,7 +860,7 @@ function modal4Go(){
 function modal5Go(){
     $('#Modal').attr('data-target','#myModal5');
     $('#soundimg').attr('onClick',"PlaySound('audio__playlist__0')");
-    $('#backgroundimg').attr('src',"/camping.png");
+    
     // db variable
     var audio0 = document.getElementsByClassName('audio__playlist_0');
     var audio1 = document.getElementsByClassName('audio__playlist_1');
@@ -844,7 +872,7 @@ function modal5Go(){
     var audio6 = document.getElementsByClassName('audio__playlist__2');
     var audio7 = document.getElementsByClassName('audio__playlist__3');
     document.getElementById("writer_name").innerHTML = "sound by "+writers[3]; 
-    document.getElementById("playlist-img").style.backgroundImage = "url('/nightcafe.png')";
+    document.getElementById("playlist-img").style.backgroundImage = "url('https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_playlist_image/nightcafe.png')";
     $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
     $.each(audio0, function(i){
      audio0[i].pause();   
@@ -881,11 +909,10 @@ function modal5Go(){
     m=0;
 }
 
-
 function modal6Go(){
     $('#Modal').attr('data-target','#myModal6');
     $('#soundimg').attr('onClick',"PlaySound('audio__playlist__1')");
-    $('#backgroundimg').attr('src',"/nightcafe.png");
+    
     // db variable
     var audio0 = document.getElementsByClassName('audio__playlist_0');
     var audio1 = document.getElementsByClassName('audio__playlist_1');
@@ -897,7 +924,7 @@ function modal6Go(){
     var audio6 = document.getElementsByClassName('audio__playlist__2');
     var audio7 = document.getElementsByClassName('audio__playlist__3');
     document.getElementById("writer_name").innerHTML = "sound by "+writers[3];
-    document.getElementById("playlist-img").style.backgroundImage = "url('/seashore.png')";
+    document.getElementById("playlist-img").style.backgroundImage = "url('https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_playlist_image/seashore.png')";
     $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
     $.each(audio0, function(i){
      audio0[i].pause();   
@@ -938,7 +965,7 @@ function modal6Go(){
 function modal7Go(){
     $('#Modal').attr('data-target','#myModal7');
     $('#soundimg').attr('onClick',"PlaySound('audio__playlist__2')");
-     $('#backgroundimg').attr('src',"/rainystreet.png");
+     
     // db variable
     var audio0 = document.getElementsByClassName('audio__playlist_0');
     var audio1 = document.getElementsByClassName('audio__playlist_1');
@@ -950,7 +977,7 @@ function modal7Go(){
     var audio6 = document.getElementsByClassName('audio__playlist__2');
     var audio7 = document.getElementsByClassName('audio__playlist__3');
     document.getElementById("writer_name").innerHTML = "sound by "+writers[3];
-    document.getElementById("playlist-img").style.backgroundImage = "url('/rainystreet.png')";
+    document.getElementById("playlist-img").style.backgroundImage = "url('https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_playlist_image/rainystreet.png')";
     $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
     $.each(audio0, function(i){
      audio0[i].pause();   
@@ -991,7 +1018,7 @@ function modal7Go(){
 function modal8Go(){
     $('#Modal').attr('data-target','#myModal8');
     $('#soundimg').attr('onClick',"PlaySound('audio__playlist__3')");
-     $('#backgroundimg').attr('src',"/seashore.png");
+     
     // db variable
     var audio0 = document.getElementsByClassName('audio__playlist_0');
     var audio1 = document.getElementsByClassName('audio__playlist_1');
@@ -1003,7 +1030,7 @@ function modal8Go(){
     var audio6 = document.getElementsByClassName('audio__playlist__2');
     var audio7 = document.getElementsByClassName('audio__playlist__3');
     document.getElementById("writer_name").innerHTML = "sound by "+writers[3];
-    document.getElementById("playlist-img").style.backgroundImage = "url('/camping.png')";
+    document.getElementById("playlist-img").style.backgroundImage = "url('https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_playlist_image/camping.png')";
     $(".playlist-play-icon").attr('src', '/audio_on_icon.png');
     $.each(audio0, function(i){
      audio0[i].pause();   
@@ -1039,6 +1066,16 @@ function modal8Go(){
     
     m=0;
 }
+
+$(function() {
+    $("#Loader").hide();
+    $("#content").css("visibility", "visible");
+});
+
+
+
+
+
 </script>
 
 <style>
@@ -1057,7 +1094,191 @@ function modal8Go(){
     border-color: #ccc;
 }
 
+[class^="shaft-load"] {
+  margin: auto;
+  width: 60px;
+  height: 30px;
+}
+[class^="shaft-load"] > div {
+  float: left;
+  background: #ffffff;
+  height: 100%;
+  width: 5px;
+}
+[class^="shaft-load"] .shaft1 {
+  -webkit-animation-delay: 0.05s;
+  -moz-animation-delay: 0.05s;
+  -o-animation-delay: 0.05s;
+  animation-delay: 0.05s;
+}
+[class^="shaft-load"] .shaft2 {
+  -webkit-animation-delay: 0.1s;
+  -moz-animation-delay: 0.1s;
+  -o-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+[class^="shaft-load"] .shaft3 {
+  -webkit-animation-delay: 0.15s;
+  -moz-animation-delay: 0.15s;
+  -o-animation-delay: 0.15s;
+  animation-delay: 0.15s;
+}
+[class^="shaft-load"] .shaft4 {
+  -webkit-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;
+  -o-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+[class^="shaft-load"] .shaft5 {
+  -webkit-animation-delay: 0.25s;
+  -moz-animation-delay: 0.25s;
+  -o-animation-delay: 0.25s;
+  animation-delay: 0.25s;
+}
+[class^="shaft-load"] .shaft6 {
+  -webkit-animation-delay: 0.3s;
+  -moz-animation-delay: 0.3s;
+  -o-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+[class^="shaft-load"] .shaft7 {
+  -webkit-animation-delay: 0.35s;
+  -moz-animation-delay: 0.35s;
+  -o-animation-delay: 0.35s;
+  animation-delay: 0.35s;
+}
+[class^="shaft-load"] .shaft8 {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  -o-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+[class^="shaft-load"] .shaft9 {
+  -webkit-animation-delay: 0.45s;
+  -moz-animation-delay: 0.45s;
+  -o-animation-delay: 0.45s;
+  animation-delay: 0.45s;
+}
+[class^="shaft-load"] .shaft10 {
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  -o-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
 
+/* Shaft 5 */
+.shaft-load5 {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  height: 40px;
+  z-index:99;
+  margin:auto;
+}
+.shaft-load5 > div {
+  background-color: #555555;
+  bottom: 0;
+  margin-top: 35px;
+  height: 5px;
+  -webkit-animation: loading5 1.5s infinite ease-in-out;
+  -moz-animation: loading5 1.5s infinite ease-in-out;
+  -o-animation: loading5 1.5s infinite ease-in-out;
+  animation: loading5 1.5s infinite ease-in-out;
+}
+.shaft-load5 .shaft1 {
+  -webkit-animation-delay: -1.5s;
+  -moz-animation-delay: -1.5s;
+  -o-animation-delay: -1.5s;
+  animation-delay: -1.5s;
+}
+.shaft-load5 .shaft2 {
+  -webkit-animation-delay: -1.4s;
+  -moz-animation-delay: -1.4s;
+  -o-animation-delay: -1.4s;
+  animation-delay: -1.4s;
+}
+.shaft-load5 .shaft3 {
+  -webkit-animation-delay: -1.3s;
+  -moz-animation-delay: -1.3s;
+  -o-animation-delay: -1.3s;
+  animation-delay: -1.3s;
+}
+.shaft-load5 .shaft4 {
+  -webkit-animation-delay: -1.2s;
+  -moz-animation-delay: -1.2s;
+  -o-animation-delay: -1.2s;
+  animation-delay: -1.2s;
+}
+.shaft-load5 .shaft5 {
+  -webkit-animation-delay: -1.1s;
+  -moz-animation-delay: -1.1s;
+  -o-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+.shaft-load5 .shaft6 {
+  -webkit-animation-delay: -1s;
+  -moz-animation-delay: -1s;
+  -o-animation-delay: -1s;
+  animation-delay: -1s;
+}
+.shaft-load5 .shaft7 {
+  -webkit-animation-delay: -0.9s;
+  -moz-animation-delay: -0.9s;
+  -o-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+.shaft-load5 .shaft8 {
+  -webkit-animation-delay: -0.8s;
+  -moz-animation-delay: -0.8s;
+  -o-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+.shaft-load5 .shaft9 {
+  -webkit-animation-delay: -0.7s;
+  -moz-animation-delay: -0.7s;
+  -o-animation-delay: -0.7s;
+  animation-delay: -0.7s;
+}
+.shaft-load5 .shaft10 {
+  -webkit-animation-delay: -0.6s;
+  -moz-animation-delay: -0.6s;
+  -o-animation-delay: -0.6s;
+  animation-delay: -0.6s;
+}
+.shaft-load5 .shaft11 {
+  -webkit-animation-delay: -0.5s;
+  -moz-animation-delay: -0.5s;
+  -o-animation-delay: -0.5s;
+  animation-delay: -0.5s;
+}
 
+@-webkit-keyframes loading5 {
+  50% {
+    height: 100%;
+    margin-top: 0;
+    background: #2ecc71;
+  }
+}
+@-moz-keyframes loading5 {
+  50% {
+    height: 100%;
+    margin-top: 0;
+    background: #2ecc71;
+  }
+}
+@-o-keyframes loading5 {
+  50% {
+    height: 100%;
+    margin-top: 0;
+    background: #2ecc71;
+  }
+}
+@keyframes loading5 {
+  50% {
+    height: 100%;
+    margin-top: 0;
+    background: #2ecc71;
+  }
+}
 
 </style>

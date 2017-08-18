@@ -1,23 +1,29 @@
 Rails.application.routes.draw do
  
-  get 'image2/create'
+  get 'register/info1'
+
+  get 'register/info2'
+
+  post 'register/infoget'
+
 
   resources :posts do
     post "/like", to: "likes#like_toggle" 
   end
-  root 'musics#playlist'
+   root 'musics#playlist'
+  get 'musics/playlist'
 
   get 'musics/music'
   get 'musics/playlist'
   get 'musics/playlist2'
   post '/posts/:post_id' =>"comments#create"
-  delete '/posts/:post_id/comments/:id' =>"comments#destroy"
+  post '/posts/:post_id/comments/:comment_id' =>"comments#destroy"
   post '/posts/:post_id/comments/:id' =>"comments#update"
   get 'posts/new'=> 'posts#new'
   post 'posts/posts/show' => 'posts#share'
-  devise_for :users
+  devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks', registrations: "users/registrations", sessions: 'users/sessions'  }
   resources :playlists
-
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

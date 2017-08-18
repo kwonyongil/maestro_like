@@ -4,12 +4,19 @@ source 'https://rubygems.org'
 gem 'sqlite3', :group => :development
 gem 'pg', :group => :production
 gem 'rails_12factor',:group => :production
-
+gem 'omniauth'
+gem 'omniauth-kakao', :git => 'git://github.com/hcn1519/omniauth-kakao'
+gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
+gem "letter_opener", :group => :development
 gem 'kaminari'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
+gem 'fog-aws'
 gem "cancancan", '~> 1.10' 
 gem 'devise'
+gem "figaro"
+gem 'impressionist'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
@@ -26,7 +33,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.

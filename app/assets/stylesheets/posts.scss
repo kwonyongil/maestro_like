@@ -5,7 +5,13 @@
 $primary-color: #2ecc71;
 $sub-color: #555;
 
+#_yes:hover{
+	cursor:pointer;
+}
 
+#_no:hover{
+	cursor:pointer;
+}
 a:focus, a:hover{
 	border:none!important;
 	text-decoration:none!important;
@@ -17,10 +23,7 @@ a:focus, a:hover{
 }
 .raw_music{
    	height:50vh;
- 
  	overflow-y:scroll;
- 	
- 	
 }
 
 .player_show{

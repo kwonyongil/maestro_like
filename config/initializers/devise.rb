@@ -1,6 +1,9 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+  config.omniauth :facebook, ENV["Facebook_Key"], ENV["Facebook_Secret"]
+  config.omniauth :google_oauth2, ENV["Google_Key"], ENV["Google_Secret"]
+  config.omniauth :kakao, ENV["Kakao_Key"], :redirect_path => "/users/auth/kakao/callback"
   config.scoped_views = true
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -8,7 +11,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   config.secret_key = 'aa381497d175003ae998aec2338f182acc075ac5da146bff8d507912ef8dd614fafb357a6f062408a4ff8cc1130adbab80f128c0cce5f24e5c54c40d22ce7e3e'
-
+ 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class

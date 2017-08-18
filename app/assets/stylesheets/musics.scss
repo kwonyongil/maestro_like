@@ -14,7 +14,16 @@ $sub-color: #555;
 		cursor:pointer;
 	}
 }
-
+#submit-file{
+	&:hover{
+		cursor:pointer !important;
+	}
+}
+#image_upload{
+	&:hover{
+		cursor:pointer !important;
+	}
+}
 .custom_body{
 	height:195vh; 
 	background-color:black;
@@ -163,7 +172,6 @@ $sub-color: #555;
 		}
 	}
 }
-
 .player{
 	width: 35%;
 	height: 50px;
@@ -252,4 +260,140 @@ $sub-color: #555;
 width:80vw !important;	
 
 }
+
+@media (max-width: 650px) {
+	.fix{
+		width:100%;
+		position:fixed;
+		z-index:5;
+		background-color:black;
+		border-bottom:1px solid gray;
+	}
+	.custom_body{
+		
+		height:300vh; 
+		background-color:black;
+		width:100%;
+		position : relative;
+	}
+	
+	.custom_music{
+		top:30vh;
+		
+		width:100%;
+		height:260vh;
+		position:relative;
+		
+		
+		.custom_volume{
+			width:100%;
+			height:90vh;
+			text-align:center;
+			border-bottom:1px solid gray;
+			h3{
+				color:white;
+			}
+		}
+		.custom_basic{
+			float:left;
+			border-right: 1px dotted gray;
+			font-family: "Helvetica";
+			
+			span{
+				font-family: "Helvetica";
+			}
+		}
+		
+		.custom_natural{
+			float:left;
+			border-right: 1px dotted gray;
+			font-family: 'Kalam', cursive;
+			span{
+				font-family: 'Kalam', cursive;
+			}
+		}
+		.custom_artificial{
+			float:right;
+			font-family: 'Kelly Slab', cursive;
+			span{
+				font-family: 'Kelly Slab', cursive;
+			}
+		}
+	}	
+		
+	
+	.volume{
+		position: absolute !important; 
+	
+		display:none;
+		height: 5px !important;
+		width: 100%;
+		background: #555 !important;
+		border: none  !important;
+		border-radius: 15px !important;
+		
+		.ui-slider-range-min {
+			height: 5px;
+			width: 100%;
+			position: absolute;
+			background: $primary-color;
+			border: none;
+			border-radius: 10px;
+	  	    outline: none;
+		}
+		
+		.ui-slider-handle {
+	    	width: 14px !important;
+	      	height: 14px !important;
+	    	border-radius: 14px !important;
+	      	background: #FFF !important;
+	      	position: absolute !important;
+	      	margin-left: -8px !important;
+	      	margin-top: 1px !important;
+	      	cursor: pointer;
+	      	outline: none;
+		}
+	}
+	
+	
+	.custom_music_item{
+	
+		width:100%;
+		height:5vh;
+		display:flex;
+		justify-content:space-between;
+		align-items:center;
+		
+		
+		
+		span{
+			color:gray;
+			margin-left:7%;
+			font-weight:700;
+			font-size :20px;
+			
+		}
+		span:hover{
+			color:white;
+			margin-left:7%;
+			cursor:pointer;
+		}	
+	}
+	
+	    .line{
+	        width:100%;
+	        height:2px;
+	        background-color: gray;
+	        
+	    }
+	
+	.music_name{
+		
+		background-color:transparent;
+		border: 1px solid gray;
+	}
+	
+	
+}
+
 

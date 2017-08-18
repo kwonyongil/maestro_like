@@ -1,7 +1,7 @@
 
 <div class="whole">
     <div class="container main">
-        <h1 class="main_logo">Maestro</h1>
+         <a href="/musics/playlist"><h1 class="main_logo">Maestro</h1></a>
         <div class="row">
             <div class="col-sm-11">
                 <span class="theme">share my sound</span>
@@ -14,7 +14,7 @@
                 <% if @playlist.image.present? %>
                     <%= image_tag(@playlist.image,  width: '100%', height: '100%') %> 
                  <% else %>
-                     <img src="/default_imgs2/<%=@playlist.image2%>" style="width: 100%; height:100%">
+                     <img src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image2/<%=@playlist.image2%>" style="width: 100%; height:100%">
                 <% end %>
             </div>
             <div class="col-sm-6">
@@ -23,8 +23,60 @@
                 </div>
             </div>
         </div>
+        
+            <div class="col-sm-6 raw_music">
+                <% @volume = Array.new %>
+                <% @musics = Music.where(:playlist_id => @post.playlist_id) %>
+                <% @musics = @musics.where(:onoff => true) %>
+                <% @musics.each_with_index do |u, i| %>
+                <% @volume[i] = u.volume %>
+                <div class="music_item">
+                    <span><%= u.name%></span>
+                    <div class="player_show">
+                        <audio id="audio<%=i%>"class="audio__playlist" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/music/<%=u.name %>.mp3" loop autoplay></audio>
+                        <div id="volume_<%=i%>" class="volume_show"></div>   
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        
+            
+        
     </div>
 </div> 
+
+<script>
+    
+
+$(function () {
+    var $audi = new Array();
+    $audi = document.getElementsByClassName("audio__playlist");
+    
+    
+    $.each($audi,function(i){
+        var $vol = $("#volume_" + i);
+        var AUDIO = $audi[i];
+        var volvalue = <%= @volume %>;
+        
+        AUDIO.volume = volvalue[i];
+
+    
+        $vol.slider({
+            min:0,
+            max:100,
+            range:"min",
+            disabled: true,
+            value: AUDIO.volume * 100,
+            slide: function (ev, ui) {
+  
+                AUDIO.volume = ui.value / 100;
+            }
+        })
+    });
+});
+
+</script>
+
 <style>
     .main{
         padding-top: 50px;
@@ -40,7 +92,7 @@
         font-size:20px;
     }
     .whole{
-        height:100vh;
+        height:100%;
         background-color: #030303;
     }
     .thumbnail{
@@ -84,7 +136,6 @@
         border: 2px solid gray;
     }
     .actions input{
-        margin-top:100px;
         width:100%;
         padding:15px;
         
@@ -94,7 +145,7 @@
         transition:0.3s;
     }
     .field{
-        margin-bottom:60px;
+        margin-bottom:45px;
     }
     .label{
         font-family: "Helvetica";
@@ -103,6 +154,6 @@
         font-size: 1.2em;
     }
     .contents{
-        margin-bottom:100px;
+        
     }
 </style>

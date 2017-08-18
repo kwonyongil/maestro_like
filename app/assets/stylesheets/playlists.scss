@@ -58,7 +58,7 @@ $sub-color: #555;
 			color: white;
 			width: 250px;
 			margin: 0 auto;
-			margin-top: 25vh;
+			margin-top: 39vh;
 			text-align:center;
 		}
 		.playlist-play-icon{
@@ -159,7 +159,8 @@ $sub-color: #555;
 	overflow: visible;
 	top: 0;
 	left: 0;
-	background-color: black !important
+	background-color: black !important;
+	color : black;
 }
 .name{
 	position:relative;
@@ -418,6 +419,23 @@ $sub-color: #555;
   
   
 }
+.play_del{
+	position:absolute;
+
+	bottom: 15px;
+  	left: 95%;
+  	z-index:10;
+  	color:rgba(0,0,0,0.7)!important;
+  	font-size: 20px;
+  	display:none;
+  	cursor:pointer;
+  	&:hover{
+  		color:  !important;
+  	}
+}
+.bird:hover .play_del{
+	display:inline-block;	
+}	
 .bird:hover .overlay{
   opacity: 1;
   

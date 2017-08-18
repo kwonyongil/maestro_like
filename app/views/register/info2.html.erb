@@ -1,0 +1,19 @@
+
+
+<% @user = current_user %>
+
+<%= form_tag(register_infoget_path) do %>
+  <% if @user.email.nil? or @user.email == '' %>
+  <div>
+    <div>
+      <label for="email" >email</label>
+      <%= text_field_tag :email, nil, placeholder: "abc@example.com" %>
+    </div>
+  <% end %>
+
+    <div>
+      <%= submit_tag "제출"%>
+<% end %>
+    </div>
+  </div>
+

@@ -48,9 +48,9 @@
 </div>
 
 <video autoplay loop id="video-background" muted plays-inline>
-  <source src="/short.mp4" type="video/mp4">
-  <source src="/short.webm" type="video/webm">
-	<source src="/short.ogg" type="video/ogg">
+  <source src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/maestro_login/short.mp4" type="video/mp4">
+  <source src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/maestro_login/short.webm" type="video/webm">
+	<source src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/maestro_login/short.ogg" type="video/ogg">
 </video>
 
 <style>
@@ -68,17 +68,3 @@ body {
 
 </style>
 
-<script>
-  $(document).ready(function(){
-
-            //Check if the current URL contains '#' 
-            if(document.URL.indexOf("#")==-1)
-            {
-                // Set the URL to whatever it was plus "#".
-                url = document.URL+"#";
-                location = "#";
-                //Reload the page
-                location.reload(true);
-            }
-});
-</script>

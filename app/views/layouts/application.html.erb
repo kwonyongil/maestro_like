@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RedBet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maestro</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <link rel="shortcut icon" href="favicon.ico">
@@ -14,19 +15,41 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'>
-
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
-  
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-     
-          
+ 
 <%= yield %>
 
+<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('2b6b180f7a76672323f493e2f2812f18');
+    // 카카오 로그인 버튼을 생성합니다.
+    Kakao.Auth.createLoginButton({
+      container: '#kakao-login-btn',
+      success: function(authObj) {
+        alert(JSON.stringify(authObj));
+      },
+      fail: function(err) {
+         alert(JSON.stringify(err));
+      }
+    });
+  //]]>
+  function ktout(){
+    Kakao.Auth.logout(function(){
+      setTimeout(function(){
+        location.href="https://redbet-kwonyongil.c9users.io/users/sign_in"
+        },1000);
+      });
+  }
+</script>
 </body>
 </html>
