@@ -21,11 +21,15 @@
                 <div class="col-sm-3">
                     <div class="thumbnail">
                         <div class="img_box">
-                            <% if post.playlist.image.present? %>
-                                <img class="imgs" src="<%= post.playlist.image %>">
-                            <%else%>
-                                <img class="imgs" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image/<%=post.playlist.image2%>">      
-                            <%end%>
+                            <% if post.playlist == nil %>
+                                deleted post
+                            <% else %>
+                                <% if post.playlist.image.present? %>
+                                    <img class="imgs" src="<%= post.playlist.image %>">
+                                <%else%>
+                                    <img class="imgs" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image/<%=post.playlist.image2%>">      
+                                <%end%>
+                            <% end %>
                         </div>
                         <div class="caption" >
                             <p class="title"> #  <%=post.title%> </p>
@@ -44,7 +48,11 @@
                                 <%= "#{post.unique_impression_count} views" %>
                             </p>
                         </div>
-                        <a href="/posts/<%= post.id %>">
+                        <% if post.playlist == nil %>
+                            <a onClick="alert('삭제된 게시물입니다.')">
+                        <% else %>
+                            <a href="/posts/<%= post.id %>">
+                        <% end %>
                         <div class="overlay">
                             
                         </div>

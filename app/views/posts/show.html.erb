@@ -124,10 +124,11 @@ $('#_yes').click(function(){
       data:{post_id: post_id},
       dataType:"JSON"
    });
-   $('#_yes').remove();
-   $('#like_si').remove();
-
-   $('#like_a').append("<span class='likebutton_no' id='_no'>♡</span>");
+    $('#_yes').remove();
+    $('#like_si').remove();
+    document.getElementById("hidden_post_id").setAttribute('value',post_id);
+    document.getElementById("hidden_like").setAttribute('value',like_size);
+    $('#like_a').append("<span class='likebutton_no' id='_no'>♡</span>");
     $('#like_a').append("<span id='like_si'> "+ like_size+" likes</span>");
 });
 
@@ -145,13 +146,14 @@ $('#_no').click(function(){
       data:{post_id: post_id},
       dataType:"JSON"
    });
-   $('#_no').remove();
+    $('#_no').remove();
     $('#like_si').remove();
-   $('#like_a').append("<span class='likebutton_yes' id='_yes'>♥</span>");
+    document.getElementById("hidden_post_id").setAttribute('value',post_id);
+    document.getElementById("hidden_like").setAttribute('value',like_size);
+
+    $('#like_a').append("<span class='likebutton_yes' id='_yes'>♥</span>");
     $('#like_a').append("<span id='like_si'> "+ like_size+" likes</span>");
 
-   
- 
 });
 
 $('.comment-destroy').click(function(){
