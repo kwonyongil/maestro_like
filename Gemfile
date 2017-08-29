@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'sqlite3', :group => :development
-gem 'pg', :group => :production
-gem 'rails_12factor',:group => :production
+
 gem 'omniauth'
 gem 'omniauth-kakao', :git => 'git://github.com/hcn1519/omniauth-kakao'
 gem 'omniauth-facebook'
