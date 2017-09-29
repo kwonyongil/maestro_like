@@ -1,8 +1,6 @@
 class PlaylistsController < ApplicationController
     def create
         @playlist = Playlist.new(playlist_params)
-     
-     
         @playlist.save
                                                                                                           
         @music = ['0','0','0','0','0','0','0','0','0','0','0','0','0','0']  
@@ -47,7 +45,7 @@ class PlaylistsController < ApplicationController
           @music_3[i].playlist_id = @playlist.id
           @music_3[i].save
         end
-        redirect_to '/musics/playlist'  
+        redirect_to '/musics/playlist'
     end
     
     def destroy
@@ -58,12 +56,7 @@ class PlaylistsController < ApplicationController
     
     def playlist_params
       params[:playlist][:user_id] = current_user.id
-         
-            
-        params.require(:playlist).permit(:name, :image, :user_id, :writer, :image2)
-     
-    
-        
+      params.require(:playlist).permit(:name, :image, :user_id, :writer, :image2)
     end
 end
 

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post '/posts/:post_id/comments/:comment_id' =>"comments#destroy"
   post '/posts/:post_id/comments/:id' =>"comments#update"
   get 'posts/new'=> 'posts#new'
-  post 'posts/posts/show' => 'posts#share'
+  post 'posts/posts/show' => "posts#share"
   devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks', registrations: "users/registrations", sessions: 'users/sessions'  }
   resources :playlists
   
