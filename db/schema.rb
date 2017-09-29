@@ -104,9 +104,6 @@ ActiveRecord::Schema.define(version: 20170816091547) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "posts", ["playlist_id"], name: "index_posts_on_playlist_id"
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
-
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email",                  default: "", null: false
