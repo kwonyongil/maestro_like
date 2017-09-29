@@ -33,10 +33,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-  
-    
-      @post.save
-     
+    @post.save
     redirect_to '/posts'
   end
 
@@ -44,8 +41,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     @post.update(post_params)
-    
-     redirect_to '/posts'
+    redirect_to '/posts'
   end
 
   # DELETE /posts/1
