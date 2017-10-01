@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'register/info2'
   post 'register/infoget'
   resources :posts do
-    post "/like", to: "likes#like_toggle" 
+    post "/like", to: "likes#like_toggle"
   end
   get 'musics/playlist'
   get 'musics/music'

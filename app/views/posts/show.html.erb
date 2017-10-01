@@ -66,20 +66,21 @@
                     </div>
                 </div>
                 <div class="row">
+                    <form action="/posts/<%=@post.id%>" method="post">
                     <div class="col-sm-10">
                         
                         <div class="form-group">
-                        <input type="hidden" id="hidden_user_id" value="<%=current_user.id%>" name="user_id"></input>
-                        <input type="hidden" id="hidden_user_name" value="<%=current_user.name%>" name="user_name"></input>
-                        <input type="hidden" id="hidden_post_id" value="<%=@post.id%>" name="post_id"></input>
-                        <input type="hidden" id="hidden_like" value="<%=@post.likes.size %>" name="like_id"></input>
-                        <textarea class="form-control comment_blank" rows="1" name="comment" id="comment_content"></textarea>
-                       </div>
+                            <input type="hidden" id="hidden_user_id" value="<%=current_user.id%>" name="user_id"></input>
+                            <input type="hidden" id="hidden_user_name" value="<%=current_user.name%>" name="user_name"></input>
+                            <input type="hidden" id="hidden_post_id" value="<%=@post.id%>" name="post_id"></input>
+                            <input type="hidden" id="hidden_like" value="<%=@post.likes.size %>" name="like_id"></input>
+                            <textarea class="form-control comment_blank" rows="1" name="comment" id="comment_content"></textarea>
+                        </div>
                     </div>
                     <div class="col-sm-2">
                        <button type="submit" class="comment-button" id="<%=@post.id%>">post</button>
-                      
                     </div>
+                    </form>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 " id="comments">
@@ -90,7 +91,7 @@
                             <a class="comment-destroy" id="<%=comment.id %>" onclick="alert('삭제하시겠습니까?')">x</a>
                                
                             <% end %>
-                            <span class="writer" id="<%=comment.id %>-wr"> 작성자 : <%= comment.user.name %></span><br id="<%=comment.id %>-br">
+                            <span class="writer" id="<%=comment.id %>-wr"><%= comment.user.name %></span><br id="<%=comment.id %>-br">
                         <% end %>
                     </div> 
                         <div class="paginationall">
@@ -104,7 +105,7 @@
             <form action="posts/show" method="post">
                     <input type="hidden" name="playlist_id" value="<%=@post.playlist_id%>">
                     <%if current_user.playlists.size != 4 %>
-                    <input type="submit" value="add to my list" class="submit_button">
+                        <input type="submit" value="add to my list" class="submit_button">
                     <%else%>
                     <%end%>
             </form>
@@ -173,31 +174,26 @@ $('.comment-destroy').click(function(){
 });
 
 
-$('.comment-button').click(function(){
-   console.log("댓글버튼 클릭"); 
+// $('.comment-button').click(function(){
+//   console.log("댓글버튼 클릭"); 
    
-   var post_id = $("#hidden_post_id").val();
-   var user_id = $("#hidden_user_id").val();
-   var user_name = $("#hidden_user_name").val();
-   var comment = $("#comment_content").val();
-   /* console.log(comment_id); */
-   $.ajax({
-      method:"POST",
-      url:"/posts/"+post_id,
-      data:{post_id: post_id, user_id:user_id, comment:comment, user_name:user_name},
-      dataType:"JSON"
-    })
-    $("#comment_content").val("");
-    $("#comments").append("<span>"+comment+"</span>");
-   $("#comments").append("<span class='writer'> 작성자 : "+user_name+"</span><br>");
-                      
-                   
-                        
-  });
+//   var post_id = $("#hidden_post_id").val();
+//   var user_id = $("#hidden_user_id").val();
+//   var user_name = $("#hidden_user_name").val();
+//   var comment = $("#comment_content").val();
+//   /* console.log(comment_id); */
+//   $.ajax({
+//       method:"POST",
+//       url:"/posts/"+post_id,
+//       data:{post_id: post_id, user_id:user_id, comment:comment, user_name:user_name},
+//       dataType:"JSON"
+//     })
+//     $("#comment_content").val("");
+//     $("#comments").append("<span>"+comment+"</span>");
+//   $("#comments").append("<span class='writer'> 작성자 : "+user_name+"</span><br>");
+//   });
+// //1
 
-
-
-//1
 function like_yes(){
     
 }
@@ -243,12 +239,6 @@ $(function () {
 
 
 <style>
-.container{
-    
-    
-}
-
-
 .likebutton_yes{
     color:;
 }
