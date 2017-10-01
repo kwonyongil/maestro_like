@@ -5,10 +5,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-
     @users = User.all
     @posts = Post.search(params)
-   
   end
 
   #  GET /posts/1
@@ -58,11 +56,11 @@ class PostsController < ApplicationController
     @playlist = Playlist.new
     @playlist.user_id = current_user.id
     @playlist_last = Playlist.last
-    
     @playlist_2 = Playlist.find(params[:playlist_id])
-    @playlist.writer = @playlist_2.writer 
+    @playlist.writer = @playlist_2.writer
+    
     if @playlist_2.image.present?
-     @playlist.image = @playlist_2.image
+      @playlist.image = @playlist_2.image
     else
       @playlist.image2 = @playlist_2.image2
     end

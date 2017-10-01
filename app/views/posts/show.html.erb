@@ -92,10 +92,11 @@
                             <% end %>
                             <span class="writer" id="<%=comment.id %>-wr"> 작성자 : <%= comment.user.name %></span><br id="<%=comment.id %>-br">
                         <% end %>
+                    </div> 
                         <div class="paginationall">
                           <%= paginate @comments, window:2, outer_window:0 %>
                         </div>
-                    </div> 
+                   
                 </div>
             </div>
         </div>

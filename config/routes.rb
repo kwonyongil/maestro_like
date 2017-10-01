@@ -1,20 +1,13 @@
 Rails.application.routes.draw do
- 
+  root 'musics#playlist'
   get 'register/info1'
-
   get 'register/info2'
-
   post 'register/infoget'
-
-
   resources :posts do
     post "/like", to: "likes#like_toggle" 
   end
-   root 'musics#playlist'
   get 'musics/playlist'
-
   get 'musics/music'
-  get 'musics/playlist'
   get 'musics/playlist2'
   post '/posts/:post_id' =>"comments#create"
   post '/posts/:post_id/comments/:comment_id' =>"comments#destroy"
