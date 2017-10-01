@@ -89,7 +89,11 @@ a:focus, a:hover{
 		
 	}
 }
-
+.white_x{
+	color:white;
+	z-index:1;
+	text-align:right;
+}
 .ui-state-disabled,
 .ui-widget-content .ui-state-disabled,
 .ui-widget-header .ui-state-disabled {

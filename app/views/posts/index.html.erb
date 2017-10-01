@@ -1,3 +1,4 @@
+<div class="whole_1">
 <div class="whole">
     <div class="container main">
         <div class="playlist-logo">
@@ -21,6 +22,7 @@
                 <div class="col-sm-3">
                     <div class="thumbnail">
                         <div class="img_box">
+                            
                             <% if post.playlist == nil %>
                                 deleted post
                             <% else %>
@@ -30,6 +32,7 @@
                                     <img class="imgs" src="https://s3.ap-northeast-2.amazonaws.com/kwonyongil/uploads/default_image/<%=post.playlist.image2%>">      
                                 <%end%>
                             <% end %>
+                            
                         </div>
                         <div class="caption" >
                             <p class="title"> #  <%=post.title%> </p>
@@ -47,6 +50,7 @@
                             <p class="font">
                                 <%= "#{post.unique_impression_count} views" %>
                             </p>
+                            
                         </div>
                         <% if post.playlist == nil %>
                             <a onClick="alert('삭제된 게시물입니다.')">
@@ -65,12 +69,8 @@
     <div class="paginationall">
     <%= paginate @posts, window:2, outer_window:0 %>
     </div>
-
-    
-    
-    
 </div>
-
+</div>
 <style>
 
 .font{
@@ -91,7 +91,13 @@
     color:lightgray;
     text-align: center;
 }
+.whole_1{
+    height:100vh;
+    position:relative;
+    background-color: #030303;
+}
 .whole{
+
     background-color: #030303;
 }
 .thumbnail{
