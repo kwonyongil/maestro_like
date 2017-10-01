@@ -1,9 +1,9 @@
 class Post < ActiveRecord::Base
     belongs_to :user
     belongs_to :playlist
-    has_many :likes
-    has_many :comments
-    has_many :liked_users, through: :likes, source: :user
+    has_many :likes, dependent: :destroy
+    has_many :comments, dependent: :destroy
+    has_many :liked_users, through: :likes, source: :user, dependent: :destroy
     
     after_destroy :log_destroy_action
     

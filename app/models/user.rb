@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :liked_posts, through: :likes, source: :post, dependent: :destroy
   has_many :playlists, dependent: :destroy
   has_many :posts, dependent: :destroy
-  has_many :identity
+  has_many :identity, dependent: :destroy
   
 def self.find_for_oauth(auth, signed_in_resource = nil)
 
