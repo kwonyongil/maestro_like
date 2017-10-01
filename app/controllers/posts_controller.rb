@@ -51,11 +51,11 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
   def share
-    @musics=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    @musics = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     @playlist = Playlist.new
     @playlist.user_id = current_user.id
-    @playlist_last = Playlist.last
     @playlist_2 = Playlist.find(params[:playlist_id])
     @playlist.writer = @playlist_2.writer
     
@@ -65,16 +65,19 @@ class PostsController < ApplicationController
       @playlist.image2 = @playlist_2.image2
     end
     @playlist.name = @playlist_2.name
+    @playlist.save
+    @playlist_last = Playlist.last
+    
     @musics_2 = Music.where(:playlist_id => @playlist_2.id)
     @musics_2.each_with_index do |p,i|
       @musics[i]  =  Music.new
       @musics[i].name = p.name
       @musics[i].volume = p.volume
       @musics[i].onoff = p.onoff
-      @musics[i].playlist_id = @playlist_last.id + 1
+      @musics[i].playlist_id = @playlist_last.id
       @musics[i].save
     end
-    @playlist.save
+    
     redirect_to '/musics/playlist'
   end
   
